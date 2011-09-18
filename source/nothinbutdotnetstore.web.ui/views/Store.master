@@ -1,0 +1,132 @@
+<%@ Register TagPrefix="NothinButDotNetStore" TagName="ShoppingCart" src="shoppingcartsidebar.ascx"  %>
+<%@ Register TagPrefix="NothinButDotNetStore" TagName="Footer" src="Footer.ascx" %>
+<%@ Master Language="C#" AutoEventWireup="true" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Welcome to the Nothin But Dot Net Store: Your Online Grocery Store</title>	
+	<link rel="stylesheet" type="text/css" href="../styles.css" media="screen,projection" />
+	<meta name="robots" content="index,follow" />
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.developwithpassion.com" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />	
+	<style type="text/css">
+
+	</style>	
+</head>
+<body>
+<div id="container">
+
+	<div id="header">
+	
+		<div id="logo">
+			<a href="Default.aspx">
+				<img src="../images/logo.gif" alt="Develop With Passion®" />
+			</a>
+		</div>
+		
+		<div id="headerRight">
+			<a href="http://feeds.developwithpassion.com">
+				<img src="../images/headerFeed.gif" alt="" class="subscribe" />
+			</a>
+		</div>
+		
+	</div>
+  
+	<ul id="tabnav">
+		<li class="active">Grocery Division</li>
+	</ul>
+	
+	<div id="contact">
+		<img src="../images/icon_email.gif" alt="" align="absmiddle" />
+		<a href="ContactUs.aspx">Contact</a>	  
+	</div><!-- contact -->
+	
+	<div id="wrap">
+		<div id="sidebar">
+			<div id="leftNav">
+				
+				<div id="leftNavHeader">
+					<img src="../images/icon_latest.gif" alt="" align="absmiddle" />Go Shopping
+				</div>
+                <ul>
+                    <li>
+                        <ul>
+                            <li><a href="StoreDirectory.aspx">Store Directory</a></li>
+                            <li><a href="DepartmentBrowser.aspx">Department Browser</a></li>
+                        </ul>
+                    
+                    </li>           
+                    <li>
+                        <a href="#">Customer Service</a>
+                        <ul>
+                            <li><a href="AccountMenu.aspx">My Account</a></li>
+                            <li><a href="CreateAccount.aspx">Create An Account</a></li>
+                            <li><a href="ContactUs.aspx">Contact Us</a></li>                            
+                        </ul>
+                    </li>                    
+                </ul>       
+				
+			</div>
+		
+		</div><!-- sidebar -->
+		
+		<div id="content">
+			<div id="contentContainer">
+			
+				<div id="banner">
+					<img src="../images/bannerDefault.jpg" alt="" />
+				</div>
+				
+				<div id="contentPublications">
+				
+					<div id="contentMain_head">
+						<img src="../images/icon_publications.gif" alt="" align="absmiddle" />Welcome
+					</div>
+				
+					<div id="publications_body">
+					    <form runat="server">
+						    <asp:ContentPlaceHolder id="childContentPlaceHolder" runat="server">
+						    </asp:ContentPlaceHolder>
+						</form>
+					</div>
+					
+				</div>	
+	
+				<div id="contentBlog">					
+					
+					<div id="contentRight_head">
+					
+						<img src="../images/icon_blog.gif" alt="" align="absmiddle" />Latest Products
+						
+					</div>
+					
+					<div id="blog_body">
+						
+					</div>
+					
+				</div>
+
+			</div>
+					
+		</div><!-- content -->
+		
+		<div id="footer">
+			<p>
+				<a href="Default.aspx">Home</a> / 
+				<a href="ContactUs.aspx">Contact</a> /
+				<a href="http://feeds.developwithpassion.com">RSS</a>
+			</p>
+		</div><!-- footer -->		
+		
+	</div><!-- wrap -->
+	
+	<p>
+		&copy; Copyright. Develop With Passion&reg;. All rights reserved. 
+	</p>
+	
+</div>
+</body>
+</html>

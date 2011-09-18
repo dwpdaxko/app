@@ -1,0 +1,11 @@
+use [<%= @database_details.initial_catalog %>]
+GO
+
+GRANT SELECT ON Departments TO WebUser;
+GRANT SELECT ON Products TO WebUser;
+GRANT SELECT ON ProductVendors TO WebUser;
+GRANT SELECT ON ShoppingCart TO WebUser;
+
+GRANT INSERT ON ShoppingCart TO WebUser;
+GRANT INSERT ON CartItem TO WebUser;
+GO

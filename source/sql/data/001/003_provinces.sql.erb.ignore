@@ -1,0 +1,10 @@
+use [<%= @database_details.initial_catalog %>]
+GO
+
+PRINT 'Inserting Provinces'
+
+INSERT INTO Provinces (Province) VALUES ('Alberta');
+INSERT INTO Provinces (Province) VALUES ('BC');
+INSERT INTO Provinces (Province) VALUES ('Saskatchewan');
+
+GO

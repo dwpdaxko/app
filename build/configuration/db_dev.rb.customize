@@ -1,0 +1,12 @@
+configs ={
+  :db =>{
+    :initial_catalog => potentially_change("initial_catalog",__FILE__){configatron.project},
+    :app_connection => "data source=#{delayed{configatron.db.server_name}};Integrated Security=SSPI;Initial Catalog=#{delayed{configatron.db.initial_catalog}}",
+    :osql_connection_string => delayed{"-E \-S #{configatron.db.server_name}"},
+    :server_name => ENV['HOSTNAME'],
+    :database_path => potentially_change("database_path",__FILE__){"C:/tempfiles/databases"},
+    :web_user_account => potentially_change("web_user_account",__FILE__){"NT Authority\\Network Service"},
+    :web_account_sql => delayed{"#{configatron.db.web_user_account}, N'#{configatron.db.web_user_account}'"},
+  }
+}
+configatron.configure_from_hash(configs)

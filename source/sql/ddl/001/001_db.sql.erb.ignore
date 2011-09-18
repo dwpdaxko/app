@@ -1,0 +1,17 @@
+USE [master]
+GO
+<% 
+    def catalog_path_file(file_type)
+      File.join(@database_details.database_path,"#{@database_details.initial_catalog}.#{file_type}")
+    end
+%>
+
+IF EXISTS(SELECT * FROM Sysdatabases WHERE NAME LIKE '<%= @database_details.initial_catalog %>')
+  DROP DATABASE [<%= @database_details.initial_catalog %>]
+  GO
+
+CREATE DATABASE [<%= @database_details.initial_catalog %>] ON  PRIMARY 
+( NAME = N'<%= catalog_path_file("ldf")%>', FILENAME = N'<%= catalog_path_file("mdf") %>' , SIZE = 2240KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'<%= @database_details.initial_catalog %>_log', FILENAME = N'<%= File.join(@database_details.database_path,"#{@database_details.initial_catalog}.ldf")%>', SIZE = 768KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO

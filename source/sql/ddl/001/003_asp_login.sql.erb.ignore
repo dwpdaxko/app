@@ -1,0 +1,2 @@
+IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'<%= @database_details.web_user_account %>')
+CREATE LOGIN [<%= @database_details.web_user_account %>] FROM WINDOWS WITH DEFAULT_DATABASE=[<%= @database_details.initial_catalog %>]

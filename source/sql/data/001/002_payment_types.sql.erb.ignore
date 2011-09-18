@@ -1,0 +1,10 @@
+use [<%= @database_details.initial_catalog %>]
+GO
+
+PRINT 'Inserting Payment Types'
+
+INSERT INTO PaymentTypes (PaymentType,Accepted) VALUES ('Debit',1);
+INSERT INTO PaymentTypes (PaymentType,Accepted) VALUES ('MasterCard',1);
+INSERT INTO PaymentTypes (PaymentType,Accepted) VALUES ('American Express',1);
+
+GO

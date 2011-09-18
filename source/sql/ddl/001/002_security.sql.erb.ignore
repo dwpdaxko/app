@@ -1,0 +1,12 @@
+use [<%= @database_details.initial_catalog %>]
+GO
+if not exists (select * from dbo.sysusers where name = N'<%= @database_details.web_user_account %>' and uid < 16382)
+	EXEC sp_grantdbaccess N'<%= @database_details.web_user_account %>', N'@web_user_account %>'
+GO
+
+if not exists (select * from dbo.sysusers where name = N'WebUser' and uid > 16399)
+	EXEC sp_addrole N'WebUser'
+GO
+
+exec sp_addrolemember N'WebUser', N'<%= @database_details.web_user_account %>'
+GO

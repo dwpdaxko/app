@@ -1,0 +1,104 @@
+use [<%= @database_details.initial_catalog %>]
+GO
+
+PRINT 'Altering Table Departments'
+ALTER TABLE [dbo].[Departments] ADD 
+	CONSTRAINT [DF_Departments_Published] DEFAULT (1) FOR [Published]
+GO
+
+
+PRINT 'Altering Table PaymentTypes'
+ALTER TABLE [dbo].[PaymentTypes] ADD 
+	CONSTRAINT [DF_PaymentTypes_Accepted] DEFAULT (0) FOR [Accepted]
+GO
+
+
+
+PRINT 'Altering Table CustomerAccounts'
+ALTER TABLE [dbo].[CustomerAccounts] ADD 
+	CONSTRAINT [DF_CustomerAccounts_CustomerGUID] DEFAULT (newid()) FOR [CustomerGUID],
+	CONSTRAINT [DF_CustomerAccounts_RegisterDate] DEFAULT (getdate()) FOR [RegisterDate]	
+GO
+
+PRINT 'Altering Table Customers'
+ALTER TABLE [dbo].[Customers] ADD 
+	CONSTRAINT [FK_Customers_CustomerAccounts] FOREIGN KEY 
+	(
+		[CustomerAccountId]
+	) REFERENCES [dbo].[CustomerAccounts] (
+		[CustomerAccountId]
+	)ON Update Cascade
+GO
+
+PRINT 'Altering Table OrderDetails'
+ALTER TABLE [dbo].[OrderDetails] ADD 
+	CONSTRAINT [DF_OrderDetails_GSTExempt] DEFAULT (0) FOR [GSTExempt]	
+GO
+
+PRINT 'Altering Table Orders'
+ALTER TABLE [dbo].[Orders] ADD 				
+	CONSTRAINT [DF_Orders_OrderDate] DEFAULT (getdate()) FOR [OrderDate],	
+	CONSTRAINT [FK_Orders_CustomerAccounts] FOREIGN KEY 
+	(
+		[CustomerAccountId]
+	) REFERENCES [dbo].[CustomerAccounts] (
+		[CustomerAccountId]
+	)ON Update Cascade
+GO
+
+
+PRINT 'Altering Table OrderDetails'
+ALTER TABLE [dbo].[OrderDetails] ADD 
+	CONSTRAINT [FK_OrderDetails_Orders] FOREIGN KEY 
+	(
+		[OrderID]
+	) REFERENCES [dbo].[Orders] (
+		[OrderID]
+	),
+	CONSTRAINT [FK_OrderDetails_Products] FOREIGN KEY 
+	(
+		[OriginalProductId]
+	) REFERENCES [dbo].[Products] (
+		[ProductId]
+	)ON Update Cascade
+GO
+
+PRINT 'Altering Table Products'
+ALTER TABLE [dbo].[Products] ADD 	
+	CONSTRAINT [DF_Products_Price] DEFAULT (0.00) FOR [Price],
+	CONSTRAINT [DF_Products_Published] DEFAULT (1) FOR [Published],
+	CONSTRAINT [DF_Products_Retired] DEFAULT (0) FOR [Retired],
+	CONSTRAINT [DF_Products_GstExempt] DEFAULT (0) FOR [GstExempt],
+	CONSTRAINT [FK_Products_Cateogories] FOREIGN KEY
+	(
+		[DepartmentId]
+	) REFERENCES [dbo].[Departments](
+		[DepartmentId]
+	)
+	
+GO
+
+PRINT 'Altering Table ShoppingCart'
+ALTER TABLE [dbo].[ShoppingCart] ADD 
+	CONSTRAINT [FK_ShoppingCart_CustomerAccount] FOREIGN KEY 
+	(
+		[CustomerAccountId]
+	) REFERENCES [dbo].[CustomerAccounts] (
+		[CustomerAccountId]
+	)
+GO
+
+PRINT 'Altering Table CartItems'
+ALTER TABLE [dbo].[CartItem] ADD 
+	CONSTRAINT [FK_CartItem_ShoppingCart] FOREIGN KEY 
+	(
+		[ShoppingCartId]
+	) REFERENCES [dbo].[ShoppingCart] (
+		[ShoppingCartId]
+	)
+GO
+
+CREATE  UNIQUE  INDEX [IX_PaymentTypes] ON [dbo].[PaymentTypes]([PaymentTypeId]) WITH  IGNORE_DUP_KEY  ON [PRIMARY]
+GO
+CREATE  UNIQUE  INDEX [IX_Provinces] ON [dbo].[Provinces]([Province]) WITH  IGNORE_DUP_KEY  ON [PRIMARY]
+GO

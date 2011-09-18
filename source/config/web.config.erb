@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<configuration>
+  <system.data>
+    <DbProviderFactories>
+        <remove invariant="System.Data.SQLite"/>
+        <add name="SQLite Data Provider" invariant="System.Data.SQLite" description=".Net Framework Data Provider for SQLite" type="System.Data.SQLite.SQLiteFactory, System.Data.SQLite"/>
+    </DbProviderFactories>
+  </system.data>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="System.Transactions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+      </assemblies>
+
+    </compilation>
+    <pages autoEventWireup="false">
+    </pages>
+    <authentication mode="Windows"/>
+    <!--<httpHandlers>
+      <add path=""
+        verb="*"
+        type=""/>
+        </httpHandlers>-->
+   </system.web>
+  <system.webServer>
+  </system.webServer>
+
+  <!--<system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" warningLevel="4" type="Microsoft.CSharp.CSharpCodeProvider, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+        <providerOption name="CompilerVersion" value="v4.0.30319.1"/>
+        <providerOption name="WarnAsError" value="false"/>
+      </compiler>
+    </compilers>
+    </system.codedom>-->
+</configuration>

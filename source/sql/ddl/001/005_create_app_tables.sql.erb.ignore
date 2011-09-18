@@ -1,0 +1,217 @@
+use [<%= @database_details.initial_catalog %>]
+GO
+
+PRINT 'Creating table Departments'
+CREATE TABLE [dbo].[Departments] (
+	[DepartmentID] [bigint] IDENTITY (1, 1) NOT NULL ,
+	[DisplayIndex] [int] NULL ,
+	[DepartmentName] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,	
+	[DepartmentDescription] [varchar] (1000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ParentDepartmentID] [bigint] NULL ,
+	[Published] [bit] NOT NULL ,
+	[SortByLooks] [bit] NOT NULL ,	
+	[DepartmentNumber] [int] NULL ,
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Departments] WITH NOCHECK ADD 
+	CONSTRAINT [PK_Departments] PRIMARY KEY  CLUSTERED 
+	(
+		[DepartmentID]
+	)  ON [PRIMARY] 
+GO
+GRANT  UPDATE  ON [dbo].[Departments]  TO [WebUser]
+GO
+
+
+
+PRINT 'Creating table PaymentTypes'
+CREATE TABLE [dbo].[PaymentTypes] (
+	[PaymentTypeID] [bigint] IDENTITY (1, 1) NOT NULL ,
+	[PaymentType] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[Accepted] [bit] NOT NULL,	
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[PaymentTypes] WITH NOCHECK ADD 
+	CONSTRAINT [PK_PaymentTypes] PRIMARY KEY  CLUSTERED 
+	(
+		[PaymentTypeId]
+	)  ON [PRIMARY] 
+GO
+ 
+PRINT 'Creating table CustomerAccounts'
+CREATE TABLE [dbo].[CustomerAccounts] (
+	[CustomerAccountID] [bigint] IDENTITY (1, 1) NOT NULL ,
+	[CustomerGUID] [uniqueidentifier] NOT NULL ,
+	[RegisterDate] [datetime] NOT NULL ,	
+	[Password] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[Email] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[CustomerAccounts] WITH NOCHECK ADD 
+	CONSTRAINT [PK_CustomerAccounts] PRIMARY KEY  CLUSTERED 
+	(
+		[CustomerAccountID]
+	)  ON [PRIMARY] 
+GO
+
+
+PRINT 'Creating table Customers'
+CREATE TABLE [dbo].[Customers] (
+	[CustomerAccountID] [bigint] NOT NULL ,	
+	[LastName] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[FirstName] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,									
+	[Address] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS,
+	[City] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS,
+	[ProvinceID] [int],
+	[PostalCode] [varchar] (10) COLLATE SQL_Latin1_General_CP1_CI_AS,
+	[Phone] [varchar] (25) COLLATE SQL_Latin1_General_CP1_CI_AS,	
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Customers] WITH NOCHECK ADD 
+	CONSTRAINT [PK_Customers] PRIMARY KEY  CLUSTERED 
+	(
+		[CustomerAccountID]
+	)  ON [PRIMARY] 
+GO
+
+
+PRINT 'Creating table OrderDetails'
+CREATE TABLE [dbo].[OrderDetails] (
+	[OrderDetailID] [bigint] IDENTITY (1, 1) NOT NULL ,
+	[OrderID] [bigint] NOT NULL ,	
+	[OriginalProductID] [bigint] NULL ,
+	[ProductName] [varchar] (150) NOT NULL ,
+	[SKU] [varchar] (50) NOT NULL,
+	[Price] [money] NOT NULL ,
+	[Quantity] [int] NOT NULL ,
+	[GSTExempt] [bit] NOT NULL,			
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[OrderDetails] WITH NOCHECK ADD 
+	CONSTRAINT [PK_OrderDetails] PRIMARY KEY  CLUSTERED 
+	(
+		[OrderDetailID]
+	)  ON [PRIMARY] 
+GO
+
+PRINT 'Creating table Orders'
+CREATE TABLE [dbo].[Orders] (
+	[OrderID] [bigint] IDENTITY (1, 1) NOT NULL ,
+	[CustomerAccountID] [bigint] NOT NULL,
+	[LastName] [varchar] (50) NOT NULL,
+	[FirstName] [varchar] (50) NOT NULL,
+	[Email] [varchar] (100) NOT NULL,
+	[Notes] [varchar] (255) NOT NULL,		
+	[BillingAddress] [varchar] (100) NOT NULL,
+	[BillingCity] [varchar] (50) NOT NULL,
+	[BillingState] [varchar] (50) NOT NULL,
+	[BillingZip] [varchar] (10) NOT NULL,	
+	[BillingPhone] [varchar] (25) NOT NULL,		
+	[PaymentType] [varchar] (50) NOT NULL,		
+	[OrderSubtotal] [money] NOT NULL,		
+	[OrderTax] [money] NOT NULL,		
+	[OrderDate] [datetime] NOT NULL ,			
+	[DeliveryDate] [datetime] NOT NULL,	
+	[DeliveryTime] [bigint] NOT NULL,
+	[OrderComments] [varchar] (1000) NOT NULL,	
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Orders] WITH NOCHECK ADD 
+	CONSTRAINT [PK_Orders] PRIMARY KEY  CLUSTERED 
+	(
+		[OrderID]
+	)  ON [PRIMARY] 
+GO
+
+PRINT 'Creating table Products'
+CREATE TABLE [dbo].[Products] (
+	[ProductID] [bigint] IDENTITY (1, 1) NOT NULL ,	
+	[DepartmentID] [bigint] NOT NULL ,
+	[ProductVendorID] [bigint] DEFAULT 1,
+	[DisplayIndex] [int] NULL ,	
+	[ItemNumber] [varchar] (30) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Name] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[Price] [money] NOT NULL ,				
+	[Description] [varchar] (4000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Keywords] [varchar] (1000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[SKU] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,		
+	[Published] [bit] NOT NULL ,			
+	[Retired] [bit] NOT NULL ,
+	[GstExempt] [bit] NOT NULL ,
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Products] WITH NOCHECK ADD 
+	CONSTRAINT [PK_Products] PRIMARY KEY  CLUSTERED 
+	(
+		[ProductID]
+	)  ON [PRIMARY] 
+GO
+
+PRINT 'Creating table ProductVendors'
+CREATE TABLE [dbo].[ProductVendors](
+	[ProductVendorID] [bigint] IDENTITY (1,1) NOT NULL,
+	[Name] [varchar](100) NOT NULL,	
+	[Version] [bigint] DEFAULT 1 NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ProductVendors] WITH NOCHECK ADD
+	CONSTRAINT [PK_ProductVendors] PRIMARY KEY CLUSTERED
+	(
+		[ProductVendorID]
+	) ON [PRIMARY]
+GO
+
+PRINT 'Creating table Provinces'
+CREATE TABLE [dbo].[Provinces] (
+	[ProvinceID] [bigint] IDENTITY (1, 1) NOT NULL ,
+	[Province] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Provinces] WITH NOCHECK ADD 
+	CONSTRAINT [PK_Provinces] PRIMARY KEY  CLUSTERED 
+	(
+		[ProvinceID]
+	)  ON [PRIMARY] 
+GO
+
+
+PRINT 'Creating table ShoppingCart'
+CREATE TABLE [dbo].[ShoppingCart] (
+	[ShoppingCartID] [bigint] IDENTITY (1, 1) NOT NULL ,
+	[CustomerGUID] [uniqueidentifier] NOT NULL ,	
+	[CustomerAccountId] [bigint] NULL,
+	[CreatedOn] [datetime] DEFAULT GetDate() NOT NULL ,
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ShoppingCart] WITH NOCHECK ADD 
+	CONSTRAINT [PK_ShoppingCart] PRIMARY KEY  CLUSTERED 
+	(
+		[ShoppingCartID]
+	)  ON [PRIMARY] 
+GO
+
+PRINT 'Creating table CartItem'
+CREATE TABLE [dbo].[CartItem] (
+	[CartItemId] [bigint] IDENTITY(1,1) NOT NULL,
+	[ShoppingCartID] [bigint],		
+	[ProductID] [bigint] NOT NULL ,
+	[Quantity] [int] NOT NULL ,
+	[AddedToCartOn] [smalldatetime] NOT NULL,
+	[Version] [bigint] DEFAULT 1 NOT NULL 
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[CartItem] WITH NOCHECK ADD 
+	CONSTRAINT [PK_CartItem] PRIMARY KEY  CLUSTERED 
+	(
+		[CartItemId]
+	)  ON [PRIMARY] 
+GO
