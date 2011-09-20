@@ -2,17 +2,16 @@
 {
     public class FrontController :IProcessRequests
     {
-    	private readonly IFindCommands _commandRegistry;
+    	IFindCommands command_registry;
 
-    	public FrontController(IFindCommands commandRegistry)
+    	public FrontController(IFindCommands command_registry)
     	{
-    		_commandRegistry = commandRegistry;
+    		this.command_registry = command_registry;
     	}
 
     	public void process(IContainRequestInformation request)
     	{
-    		var command = _commandRegistry.get_the_command_that_can_process(request);
-			command.process(request);
+    	    command_registry.get_the_command_that_can_process(request).process(request);
     	}
     }
 }
