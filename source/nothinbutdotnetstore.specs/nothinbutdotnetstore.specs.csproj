@@ -114,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandRegistrySpecs.cs" />
-    <Compile Include="Department.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
     <Compile Include="IApplicationFeature.cs" />
     <Compile Include="MessageGeneratorSpecs.cs" />
