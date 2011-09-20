@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using developwithpassion.specifications.rhinomocks;
+using developwithpassion.specifications.extensions;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
 using nothinbutdotnetstore.web.core;
 
@@ -19,6 +20,7 @@ namespace nothinbutdotnetstore.specs
             Establish c = () =>
             {
                 request = fake.an<IContainRequestInformation>();
+                application_feature_that_can_process = depends.on<IApplicationFeature<Department>>();
             };
 
             //Act
@@ -26,9 +28,13 @@ namespace nothinbutdotnetstore.specs
                 sut.process(request);
 
             //Assert
-            It first_observation = () =>
+            private It should_get_a_list_of_store_departments = () =>
+                                                                application_feature_that_can_process.received(
+                                                                    x => x.get_items());
+                
 
-            static IContainRequestInformation request; 
+            static IContainRequestInformation request;
+            static IApplicationFeature<Department> application_feature_that_can_process;
         }
     }
 }
