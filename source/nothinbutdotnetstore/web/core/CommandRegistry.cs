@@ -1,25 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace nothinbutdotnetstore.web.core
 {
     public class CommandRegistry : IFindCommands
     {
-        private IEnumerable<IProcessOneRequest> processors;
-        public CommandRegistry(IEnumerable<IProcessOneRequest> processors)
+        IEnumerable<IProcessOneRequest> all_commands;
+        IProcessOneRequest special_case;
+
+        public CommandRegistry(IEnumerable<IProcessOneRequest> all_commands,IProcessOneRequest special_case)
         {
-            this.processors = processors;
+            this.all_commands = all_commands;
+            this.special_case = special_case;
         }
 
         public IProcessOneRequest get_the_command_that_can_process(IContainRequestInformation request)
         {
-            foreach(IProcessOneRequest processor in processors)
-            {
-                if(processor.can_process(request))
-                {
-                    return processor;
-                }
-            }
-            return new DoNotProcessRequest();
+            return all_commands.First(x => x.can_process(request));
         }
     }
 }
