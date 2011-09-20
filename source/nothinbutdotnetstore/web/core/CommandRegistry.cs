@@ -16,7 +16,7 @@ namespace nothinbutdotnetstore.web.core
 
         public IProcessOneRequest get_the_command_that_can_process(IContainRequestInformation request)
         {
-            return all_commands.First(x => x.can_process(request));
+            return all_commands.FirstOrDefault(x => x.can_process(request)) ?? special_case;
         }
     }
 }
