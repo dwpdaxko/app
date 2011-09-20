@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
+    <Compile Include="web\core\DoNotProcessRequest.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation.cs" />
     <Compile Include="web\core\ICreateRequests.cs" />

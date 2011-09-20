@@ -1,0 +1,5 @@
+C:\Src\daxko\course1\app\bin\Release\build.dll
+C:\Src\daxko\course1\app\bin\Release\build.pdb
+C:\Src\daxko\course1\app\obj\Release\ResolveAssemblyReference.cache
+C:\Src\daxko\course1\app\obj\Release\build.dll
+C:\Src\daxko\course1\app\obj\Release\build.pdb
