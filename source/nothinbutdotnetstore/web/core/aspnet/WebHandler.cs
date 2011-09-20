@@ -1,9 +1,8 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 
 namespace nothinbutdotnetstore.web.core.aspnet
 {
-    public class WebHandler:IHttpHandler
+    public class WebHandler : IHttpHandler
     {
         IProcessRequests front_controller;
         ICreateRequests request_factory;
@@ -14,14 +13,14 @@ namespace nothinbutdotnetstore.web.core.aspnet
             this.request_factory = request_factory;
         }
 
-        public void ProcessRequest(HttpContext context)        
+        public void ProcessRequest(HttpContext context)
         {
             this.front_controller.process(this.request_factory.create_request_from(context));
         }
 
         public bool IsReusable
         {
-            get { throw new System.NotImplementedException(); }
+            get { return true; }
         }
     }
 }

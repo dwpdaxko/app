@@ -2,6 +2,7 @@
 using Machine.Specifications;
 using developwithpassion.specifications.rhinomocks;
 using nothinbutdotnetstore.specs.utility;
+using nothinbutdotnetstore.web.core;
 using nothinbutdotnetstore.web.core.aspnet;
 using developwithpassion.specifications.extensions;
 
@@ -21,7 +22,7 @@ namespace nothinbutdotnetstore.specs
             {
                 front_controller = depends.on<IProcessRequests>();
                 request_factory = depends.on<ICreateRequests>();
-                a_new_request_created_from_the_incoming_context  = new object();
+                a_new_request_created_from_the_incoming_context = fake.an<IContainRequestInformation>();
                 the_incoming_context = ObjectFactory.web.create_http_context();
 
                 request_factory.setup(x => x.create_request_from(the_incoming_context))
@@ -35,7 +36,7 @@ namespace nothinbutdotnetstore.specs
                 front_controller.received(x => x.process(a_new_request_created_from_the_incoming_context));
 
             static IProcessRequests front_controller;
-            static object a_new_request_created_from_the_incoming_context;
+            static IContainRequestInformation a_new_request_created_from_the_incoming_context;
             static HttpContext the_incoming_context;
             static ICreateRequests request_factory;
         }

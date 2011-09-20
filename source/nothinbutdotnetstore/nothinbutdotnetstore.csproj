@@ -78,8 +78,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
-    <Compile Include="web\core\aspnet\ICreateRequests.cs" />
-    <Compile Include="web\core\aspnet\IProcessRequests.cs" />
+    <Compile Include="web\core\FrontController.cs" />
+    <Compile Include="web\core\IContainRequestInformation.cs" />
+    <Compile Include="web\core\ICreateRequests.cs" />
+    <Compile Include="web\core\IFindCommands.cs" />
+    <Compile Include="web\core\IProcessOneRequest.cs" />
+    <Compile Include="web\core\IProcessRequests.cs" />
     <Compile Include="web\core\aspnet\WebHandler.cs" />
   </ItemGroup>
   <ItemGroup />
