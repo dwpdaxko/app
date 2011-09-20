@@ -17,11 +17,11 @@
     <pages autoEventWireup="false">
     </pages>
     <authentication mode="Windows"/>
-    <!--<httpHandlers>
-      <add path=""
+    <httpHandlers>
+      <add path="*.daxko"
         verb="*"
-        type=""/>
-        </httpHandlers>-->
+        type="nothinbutdotnetstore.web.core.aspnet.WebHandler,nothinbutdotnetstore"/>
+        </httpHandlers>
    </system.web>
   <system.webServer>
   </system.webServer>

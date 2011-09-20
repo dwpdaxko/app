@@ -9,7 +9,11 @@
     		this.command_registry = command_registry;
     	}
 
-    	public void process(IContainRequestInformation request)
+        public FrontController():this(new CommandRegistry())
+        {
+        }
+
+        public void process(IContainRequestInformation request)
     	{
     	    command_registry.get_the_command_that_can_process(request).process(request);
     	}

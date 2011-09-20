@@ -1,4 +1,5 @@
-﻿using Machine.Specifications;
+﻿using System.Collections.Generic;
+using Machine.Specifications;
 using developwithpassion.specifications.rhinomocks;
 using developwithpassion.specifications.extensions;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
@@ -16,25 +17,30 @@ namespace nothinbutdotnetstore.specs
 
         public class when_run : concern
         {
-            //Arrange
             Establish c = () =>
             {
+                department_repository = depends.on<IFindDepartments>();
+                the_main_departments = new List<Department>{new Department()};
+                display_engine = depends.on<IDisplayReports>();
+
                 request = fake.an<IContainRequestInformation>();
-                application_feature_that_can_process = depends.on<IApplicationFeature<Department>>();
+
+                department_repository.setup(x => x.get_the_main_departments_in_the_store())
+                    .Return(the_main_departments);
             };
 
-            //Act
             Because b = () =>
                 sut.process(request);
 
-            //Assert
-            It should_get_a_list_of_store_departments = () =>
-                                                                application_feature_that_can_process.received(
-                                                                    x => x.get_items());
+            It should_display_the_main_departments = () =>
+                display_engine.received(x => x.display(the_main_departments));
+
                 
 
             static IContainRequestInformation request;
-            static IApplicationFeature<Department> application_feature_that_can_process;
+            static IFindDepartments department_repository;
+            static IEnumerable<Department> the_main_departments;
+            static IDisplayReports display_engine;
         }
     }
 }
