@@ -28,7 +28,7 @@ namespace nothinbutdotnetstore.specs
                 sut.process(request);
 
             //Assert
-            private It should_get_a_list_of_store_departments = () =>
+            It should_get_a_list_of_store_departments = () =>
                                                                 application_feature_that_can_process.received(
                                                                     x => x.get_items());
                 
