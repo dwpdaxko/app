@@ -1,8 +1,7 @@
 ﻿namespace nothinbutdotnetstore.web.core
 {
-    public interface IProcessOneRequest
+    public interface IProcessOneRequest : IOrchestrateAnApplicationFeature
     {
-        void process(IContainRequestInformation request);
         bool can_process(IContainRequestInformation request);
     }
 }

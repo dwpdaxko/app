@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartments.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="web\core\IProcessOneRequest.cs" />
     <Compile Include="web\core\IProcessRequests.cs" />
     <Compile Include="web\core\aspnet\WebHandler.cs" />
+    <Compile Include="web\core\IOrchestrateAnApplicationFeature.cs" />
     <Compile Include="web\core\RequestCommand.cs" />
     <Compile Include="web\core\RequestMatch.cs" />
   </ItemGroup>

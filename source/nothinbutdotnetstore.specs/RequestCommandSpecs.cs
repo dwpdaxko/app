@@ -20,7 +20,7 @@ namespace nothinbutdotnetstore.specs
             Establish c = () =>
             {
                 request = fake.an<IContainRequestInformation>();
-                depends.on<RequestMatch>(x => true);
+                depends.on<RequestMatch>(x => x.Equals(request));
             };
 
             Because b = () =>
@@ -33,6 +33,26 @@ namespace nothinbutdotnetstore.specs
 
             static bool result;
             static IContainRequestInformation request;
+        }
+
+        public class when_processing_the_request : concern
+        {
+            Establish c = () =>
+            {
+                request = fake.an<IContainRequestInformation>();
+                application_feature = depends.on<IOrchestrateAnApplicationFeature>();
+            };
+
+            Because b = () =>
+                sut.process(request);
+
+
+            It should_trigger_the_specific_application_feature = () =>
+                application_feature.received(x => x.process(request));
+
+
+            static IContainRequestInformation request;
+            static IOrchestrateAnApplicationFeature application_feature;
         }
     }
 }
