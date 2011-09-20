@@ -51,13 +51,11 @@
   <ItemGroup>
     <None Include="build.bat" />
     <None Include="build\configuration\db.rb" />
-    <None Include="build\configuration\db_dev.rb" />
     <None Include="build\configuration\git.rb" />
     <None Include="build\configuration\machine_specs.rb" />
     <None Include="build\configuration\project.rb" />
     <None Include="build\tasks\git.rb" />
     <None Include="build\tasks\machine_specs.rb" />
-    <None Include="build\tasks\templates.rb" />
     <None Include="build\utils\configatron.rb" />
     <None Include="build\utils\file.rb" />
     <None Include="build\utils\msbuild_runner.rb" />
