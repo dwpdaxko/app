@@ -19,7 +19,7 @@ namespace nothinbutdotnetstore.specs
         {
             Establish c = () =>
             {
-                department_repository = depends.on<IFindDepartments>();
+                department_repository = depends.on<IRetrieveStoreInformation>();
                 the_main_departments = new List<Department>{new Department()};
                 display_engine = depends.on<IDisplayReports>();
 
@@ -38,7 +38,7 @@ namespace nothinbutdotnetstore.specs
                 
 
             static IContainRequestInformation request;
-            static IFindDepartments department_repository;
+            static IRetrieveStoreInformation department_repository;
             static IEnumerable<Department> the_main_departments;
             static IDisplayReports display_engine;
         }

@@ -21,7 +21,7 @@ namespace nothinbutdotnetstore.specs
             Establish c = () =>
             {
 
-                department_repository = depends.on<IFindDepartments>();
+                department_repository = depends.on<IRetrieveStoreInformation>();
                 display_engine = depends.on<IDisplayReports>();
 
                 request = fake.an<IContainRequestInformation>();
@@ -42,7 +42,7 @@ namespace nothinbutdotnetstore.specs
             It show_children_of_parent_department = () =>
                 display_engine.received(x => x.display(child_departments));
 
-            static IFindDepartments department_repository;
+            static IRetrieveStoreInformation department_repository;
             static IDisplayReports display_engine;
             static IContainRequestInformation request;
             static IEnumerable<Department> child_departments;

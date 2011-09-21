@@ -22,7 +22,8 @@ namespace nothinbutdotnetstore.specs
                 {
                     display_engine = depends.on<IDisplayReports>();
                     request = fake.an<IContainRequestInformation>();
-                    product_repository = depends.@on<IFindProducts>();
+
+                    product_repository = depends.on<IRetrieveStoreInformation>();
                     view_products_command = fake.an<ViewTheProductsInADepartmentInputModel>();
                     
                     products = new List<Product> { new Product() };
@@ -42,7 +43,7 @@ namespace nothinbutdotnetstore.specs
             static IDisplayReports display_engine;
             static IEnumerable<Product> products;
             static IContainRequestInformation request;
-            static IFindProducts product_repository;
+            static IRetrieveStoreInformation product_repository;
             static ViewTheProductsInADepartmentInputModel view_products_command;
         }
     }

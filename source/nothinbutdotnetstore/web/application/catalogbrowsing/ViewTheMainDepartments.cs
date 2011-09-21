@@ -6,10 +6,10 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
     public class ViewTheMainDepartments : IOrchestrateAnApplicationFeature
     {
-        IFindDepartments department_repository;
+        IRetrieveStoreInformation department_repository;
         IDisplayReports display_engine;
 
-        public ViewTheMainDepartments(IFindDepartments department_repository, IDisplayReports display_engine)
+        public ViewTheMainDepartments(IRetrieveStoreInformation department_repository, IDisplayReports display_engine)
         {
             this.department_repository = department_repository;
             this.display_engine = display_engine;

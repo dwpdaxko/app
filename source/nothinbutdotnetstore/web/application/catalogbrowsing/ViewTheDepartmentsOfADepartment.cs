@@ -6,10 +6,10 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
     public class ViewTheDepartmentsOfADepartment : IOrchestrateAnApplicationFeature
     {
-        readonly IFindDepartments department_repository;
+        readonly IRetrieveStoreInformation department_repository;
         readonly IDisplayReports display_engine;
 
-        public ViewTheDepartmentsOfADepartment(IFindDepartments department_repository,
+        public ViewTheDepartmentsOfADepartment(IRetrieveStoreInformation department_repository,
             IDisplayReports display_engine)
         {
             this.department_repository = department_repository;

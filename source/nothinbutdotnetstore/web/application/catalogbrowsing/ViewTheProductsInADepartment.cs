@@ -4,10 +4,10 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
     public class ViewTheProductsInADepartment : IOrchestrateAnApplicationFeature
     {
-        readonly IDisplayReports display_engine;
-        IFindProducts product_repository;
+        IDisplayReports display_engine;
+        IRetrieveStoreInformation product_repository;
 
-        public ViewTheProductsInADepartment(IDisplayReports display_engine, IFindProducts product_repository)
+        public ViewTheProductsInADepartment(IDisplayReports display_engine, IRetrieveStoreInformation product_repository)
         {
             this.display_engine = display_engine;
             this.product_repository = product_repository;
