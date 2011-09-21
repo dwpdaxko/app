@@ -14,7 +14,7 @@ _[Rr]e[Ss]harper.*
 *.sql
 *.swp
 *.swo
-/source/docs/Help/*.*
+source/docs/Help/*.*
 artifacts
 UpgradeLog.XML
 _UpgradeReport_Files
@@ -24,3 +24,4 @@ Gemfile.lock
 db_dev.rb
 log4net.config.xml
 web.config
+source/nothinbutdotnetstore.web.ui/Bin
