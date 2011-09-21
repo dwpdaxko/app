@@ -121,6 +121,7 @@
     <Compile Include="utility\StubSpecs.cs" />
     <Compile Include="ViewDepartmentsOfADepartmentSpecs.cs" />
     <Compile Include="ViewTheMainDepartmentsSpecs.cs" />
+    <Compile Include="ViewTheProductsInADepartmentSpecs.cs" />
     <Compile Include="WebHandlerSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
