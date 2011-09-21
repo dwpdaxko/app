@@ -12,7 +12,11 @@ CodeFile="DepartmentBrowser.aspx.cs"
                 %>
               <%-- for each department --%>
               <tr class="ListItem">
-               <td><a href="#"><%= department.name %></a></td>
+               <td><a href="<%= Link.to_run<ViewTheDepartmentsOfADepartmentRequest>()
+                                    .conditionally<ViewTheProductsInADepartmentInputModel>()
+                                    .based_on(department.has_products)
+                                    .include(department, x => x.id)
+                %>"><%= department.name %></a></td>
            	  </tr>        
               <% } %>
       	    </table>            

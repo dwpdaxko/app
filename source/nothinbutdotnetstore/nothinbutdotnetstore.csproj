@@ -84,7 +84,7 @@
     <Compile Include="web\application\catalogbrowsing\IRetrieveStoreInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentInput.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartmentInputModel.cs" />
     <Compile Include="web\core\aspnet\IFindPathsToViews.cs" />
     <Compile Include="web\core\aspnet\WebFormFactory.cs" />

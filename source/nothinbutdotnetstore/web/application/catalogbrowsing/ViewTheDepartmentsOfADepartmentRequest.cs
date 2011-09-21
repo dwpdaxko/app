@@ -1,6 +1,6 @@
 namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
-    public class ViewTheDepartmentsOfADepartmentInput
+    public class ViewTheDepartmentsOfADepartmentRequest
     {
     }
 }
