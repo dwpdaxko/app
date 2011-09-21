@@ -14,18 +14,23 @@ namespace nothinbutdotnetstore.specs
 			Establish c = () =>
 			{
 				report_model = new ReportModelForTest();
-
 				view_registry = depends.on<IFindViewForModel>();
+			    view = fake.an<IDisplayAReport>();
+
+				view_registry.setup(x => x.get_view_for(report_model)).Return(view);
 			};
 
 			Because b = () =>
 				sut.display(report_model);
 
-			It should_select_the_appropriate_view_for_the_report_model = () =>
-				view_registry.received(x => x.get_view_for_model(report_model));
 
-			private static ReportModelForTest report_model;
-			private static IFindViewForModel view_registry;
+		    It should_tell_the_view_to_render = () =>
+		        view.received(x => x.render());
+		        
+
+			static ReportModelForTest report_model;
+			static IFindViewForModel view_registry;
+		    static IDisplayAReport view;
 		}
 
 		public class ReportModelForTest {}

@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace nothinbutdotnetstore.web.core
+﻿namespace nothinbutdotnetstore.web.core
 {
-	public class DisplayEngine : IDisplayReports
-	{
-		public void display<ReportModel>(ReportModel model)
-		{
-			throw new NotImplementedException();
-		}
-	}
+    public class DisplayEngine : IDisplayReports
+    {
+        IFindViewForModel view_registry;
+
+        public DisplayEngine(IFindViewForModel view_registry)
+        {
+            this.view_registry = view_registry;
+        }
+
+        public void display<ReportModel>(ReportModel model)
+        {
+            view_registry.get_view_for(model).render();
+        }
+    }
 }
