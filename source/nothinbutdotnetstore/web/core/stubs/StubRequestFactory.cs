@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using nothinbutdotnetstore.web.application.catalogbrowsing;
 
 namespace nothinbutdotnetstore.web.core.stubs
 {
@@ -13,7 +14,8 @@ namespace nothinbutdotnetstore.web.core.stubs
         {
             public InputModel map_a<InputModel>()
             {
-                throw new System.NotImplementedException();
+                object item = new ViewTheDepartmentsOfADepartmentInput();
+                return (InputModel) item;
             }
         }
     }

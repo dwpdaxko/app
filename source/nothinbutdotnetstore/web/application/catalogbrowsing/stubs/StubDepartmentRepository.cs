@@ -12,7 +12,7 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing.stubs
 
         public IEnumerable<Department> get_departments_using(ViewTheDepartmentsOfADepartmentInput input_model)
         {
-            throw new System.NotImplementedException();
+            return Enumerable.Range(1, 100).Select(x => new Department {name = x.ToString("Sub Department 0")});
         }
     }
 }

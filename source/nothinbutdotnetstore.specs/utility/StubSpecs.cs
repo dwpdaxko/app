@@ -1,13 +1,14 @@
 ﻿using Machine.Specifications;
 using developwithpassion.specifications.rhinomocks;
 using nothinbutdotnetstore.web.core.stubs;
+using developwithpassion.specifications.extensions;
 
 namespace nothinbutdotnetstore.specs
 {
     [Subject(typeof(Stub))]
     public class StubSpecs
     {
-        public class StubTest
+        public class SomeStub
         {
             
         }
@@ -19,12 +20,12 @@ namespace nothinbutdotnetstore.specs
         public class when_asking_for_an_instance_of_a_stub : concern
         {
             Because b = () =>
-                result = Stub.with<StubTest>();
+                result = Stub.with<SomeStub>();
 
             It should_return_an_instance_of_stub = () =>
-                result.ShouldBeOfType<StubTest>();
+                result.ShouldBeAn<SomeStub>();
 
-            static StubTest result;
+            static SomeStub result;
         }
     }
 }
