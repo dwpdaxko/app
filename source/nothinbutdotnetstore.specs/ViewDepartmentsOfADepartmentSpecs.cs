@@ -20,17 +20,19 @@ namespace nothinbutdotnetstore.specs
         {
             Establish c = () =>
             {
-                department_id = 1;
 
                 department_repository = depends.on<IFindDepartments>();
                 display_engine = depends.on<IDisplayReports>();
 
                 request = fake.an<IContainRequestInformation>();
-                request.setup(x => x.get_input_model<ViewTheDepartmentsOfADepartmentInput>())
-                    .Return(new ViewTheDepartmentsOfADepartmentInput { department_id = 1 });
+
+                var input_model = new ViewTheDepartmentsOfADepartmentInput();
+                request.setup(x => x.map_a<ViewTheDepartmentsOfADepartmentInput>())
+                    .Return(input_model);
 
                 child_departments = new List<Department> { new Department() };
-                department_repository.setup(x => x.get_departments_by_parent(department_id))
+
+                department_repository.setup(x => x.get_departments_using(input_model))
                     .Return(child_departments);
             };
 
@@ -44,7 +46,6 @@ namespace nothinbutdotnetstore.specs
             static IDisplayReports display_engine;
             static IContainRequestInformation request;
             static IEnumerable<Department> child_departments;
-            static int department_id;
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IContainRequestInformation
     {
-        InputModel get_input_model<InputModel>();
+        InputModel map_a<InputModel>();
     }
 }
