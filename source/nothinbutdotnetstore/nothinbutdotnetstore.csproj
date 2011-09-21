@@ -96,6 +96,7 @@
     <Compile Include="web\core\IOrchestrateAnApplicationFeature.cs" />
     <Compile Include="web\core\RequestCommand.cs" />
     <Compile Include="web\core\RequestMatch.cs" />
+    <Compile Include="web\core\stubs\Stub.cs" />
     <Compile Include="web\core\stubs\StubDisplayEngine.cs" />
     <Compile Include="web\core\stubs\StubMissingCommand.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />

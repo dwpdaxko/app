@@ -1,5 +1,6 @@
 using nothinbutdotnetstore.web.application.catalogbrowsing.stubs;
 using nothinbutdotnetstore.web.core;
+using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
@@ -15,13 +16,13 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
             this.display_engine = display_engine;
         }
 
-        public ViewTheDepartmentsOfADepartment():this(new StubDepartmentRepository(),)
+        public ViewTheDepartmentsOfADepartment():this(Stub.with<StubDepartmentRepository>(), Stub.with<StubDisplayEngine>())
         {
         }
 
         public void process(IContainRequestInformation request)
         {
-            var child_departments = department_repository.get_departments_using(request.map_a<ViewTheDepartmentsOfADepartmentInput>().department_id);
+            var child_departments = department_repository.get_departments_using(request.map_a<ViewTheDepartmentsOfADepartmentInput>());
             display_engine.display(child_departments);
         }
     }
