@@ -2,6 +2,6 @@
 {
     public interface IContainRequestInformation
     {
-        int get_parameter(string parameter_name);
+        InputModel get_input_model<InputModel>();
     }
 }

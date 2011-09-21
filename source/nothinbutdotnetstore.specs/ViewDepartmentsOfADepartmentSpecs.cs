@@ -26,8 +26,8 @@ namespace nothinbutdotnetstore.specs
                 display_engine = depends.on<IDisplayReports>();
 
                 request = fake.an<IContainRequestInformation>();
-                request.setup(x => x.get_parameter("department_id"))
-                    .Return(department_id);
+                request.setup(x => x.get_input_model<ViewTheDepartmentsOfADepartmentInput>())
+                    .Return(new ViewTheDepartmentsOfADepartmentInput { department_id = 1 });
 
                 child_departments = new List<Department> { new Department() };
                 department_repository.setup(x => x.get_departments_by_parent(department_id))

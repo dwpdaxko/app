@@ -11,7 +11,7 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         class StubRequest : IContainRequestInformation
         {
-            public int get_parameter(string parameter_name)
+            public InputModel get_input_model<InputModel>()
             {
                 throw new System.NotImplementedException();
             }

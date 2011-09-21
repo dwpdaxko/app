@@ -16,7 +16,7 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
 
         public void process(IContainRequestInformation request)
         {
-            var child_departments = department_repository.get_departments_by_parent(request.get_parameter("department_id"));
+            var child_departments = department_repository.get_departments_by_parent(request.get_input_model<ViewTheDepartmentsOfADepartmentInput>().department_id);
             display_engine.display(child_departments);
         }
     }
