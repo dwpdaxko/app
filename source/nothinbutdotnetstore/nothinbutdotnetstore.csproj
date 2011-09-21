@@ -90,11 +90,13 @@
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartmentInputModel.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
+    <Compile Include="web\core\DisplayEngine.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation.cs" />
     <Compile Include="web\core\ICreateRequests.cs" />
     <Compile Include="web\core\IDisplayReports.cs" />
     <Compile Include="web\core\IFindCommands.cs" />
+    <Compile Include="web\core\IFindViewsForModel.cs" />
     <Compile Include="web\core\IProcessOneRequest.cs" />
     <Compile Include="web\core\IProcessRequests.cs" />
     <Compile Include="web\core\aspnet\WebHandler.cs" />
