@@ -81,6 +81,7 @@
     <Compile Include="web\application\catalogbrowsing\Department.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindDepartments.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartments.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FrontController.cs" />

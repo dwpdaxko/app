@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Machine.Specifications;
+using Rhino.Mocks;
 using developwithpassion.specifications.rhinomocks;
 using developwithpassion.specifications.extensions;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
@@ -7,11 +8,11 @@ using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.specs
 {
-    [Subject(typeof(ViewTheMainDepartments))]
-    public class ViewTheMainDepartmentsSpecs
+    [Subject(typeof(ViewTheDepartmentsOfADepartment))]
+    public class ViewTheDepartmentsOfADepartmentSpecs
     {
         public abstract class concern : Observes<IOrchestrateAnApplicationFeature,
-                                            ViewTheMainDepartments>
+                                            ViewTheDepartmentsOfADepartment>
         {
         }
 
@@ -19,28 +20,31 @@ namespace nothinbutdotnetstore.specs
         {
             Establish c = () =>
             {
+                department_id = 1;
+
                 department_repository = depends.on<IFindDepartments>();
-                the_main_departments = new List<Department>{new Department()};
                 display_engine = depends.on<IDisplayReports>();
 
                 request = fake.an<IContainRequestInformation>();
+                request.setup(x => x.get_parameter("department_id"))
+                    .Return(department_id);
 
-                department_repository.setup(x => x.get_the_main_departments_in_the_store())
-                    .Return(the_main_departments);
+                child_departments = new List<Department> { new Department() };
+                department_repository.setup(x => x.get_departments_by_parent(department_id))
+                    .Return(child_departments);
             };
 
             Because b = () =>
                 sut.process(request);
 
-            It should_display_the_main_departments = () =>
-                display_engine.received(x => x.display(the_main_departments));
+            It show_children_of_parent_department = () =>
+                display_engine.received(x => x.display(child_departments));
 
-                
-
-            static IContainRequestInformation request;
             static IFindDepartments department_repository;
-            static IEnumerable<Department> the_main_departments;
             static IDisplayReports display_engine;
+            static IContainRequestInformation request;
+            static IEnumerable<Department> child_departments;
+            static int department_id;
         }
     }
 }
