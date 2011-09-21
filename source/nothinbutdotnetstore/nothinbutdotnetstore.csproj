@@ -78,8 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
-    <Compile Include="web\application\catalogbrowsing\BrowseTheStore.cs" />
+    <Compile Include="web\application\catalogbrowsing\QueryFor.cs" />
     <Compile Include="web\application\catalogbrowsing\Department.cs" />
+    <Compile Include="web\application\catalogbrowsing\IFetchA.cs" />
     <Compile Include="web\application\catalogbrowsing\IRetrieveStoreInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
