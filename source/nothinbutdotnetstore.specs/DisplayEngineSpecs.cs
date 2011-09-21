@@ -15,7 +15,7 @@ namespace nothinbutdotnetstore.specs
 			{
 				report_model = new ReportModelForTest();
 				view_registry = depends.on<IFindViewForModel>();
-			    view = fake.an<IDisplayAReport>();
+			    view = fake.an<IDisplayAReport<ReportModelForTest>>();
 
 				view_registry.setup(x => x.get_view_for(report_model)).Return(view);
 			};
@@ -30,7 +30,7 @@ namespace nothinbutdotnetstore.specs
 
 			static ReportModelForTest report_model;
 			static IFindViewForModel view_registry;
-		    static IDisplayAReport view;
+		    static IDisplayAReport<ReportModelForTest> view;
 		}
 
 		public class ReportModelForTest {}
