@@ -122,6 +122,7 @@
     <Compile Include="utility\ObjectFactory.cs" />
     <Compile Include="utility\StubSpecs.cs" />
     <Compile Include="ViewDepartmentsOfADepartmentSpecs.cs" />
+    <Compile Include="ViewRegistrySpecs.cs" />
     <Compile Include="ViewTheMainDepartmentsSpecs.cs" />
     <Compile Include="QueryForSpecs.cs" />
     <Compile Include="WebHandlerSpecs.cs" />

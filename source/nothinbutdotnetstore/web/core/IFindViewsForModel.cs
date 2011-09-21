@@ -2,6 +2,6 @@
 {
 	public interface IFindViewForModel
 	{
-		IDisplayAReport get_view_for<ReportModel>(ReportModel report_model);
+		IDisplayAReport<ReportModel> get_view_for<ReportModel>(ReportModel report_model);
 	}
 }
