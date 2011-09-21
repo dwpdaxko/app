@@ -7,7 +7,6 @@ using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.specs
 {
-    [Subject(typeof(ViewTheProductsInADepartment))]
     public class QueryForSpecs
     {
         public abstract class concern : Observes<IOrchestrateAnApplicationFeature,

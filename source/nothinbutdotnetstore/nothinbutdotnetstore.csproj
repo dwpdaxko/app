@@ -84,17 +84,20 @@
     <Compile Include="web\application\catalogbrowsing\IRetrieveStoreInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentInput.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartments.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartmentInputModel.cs" />
+    <Compile Include="web\core\aspnet\IFindPathsToViews.cs" />
+    <Compile Include="web\core\aspnet\WebFormFactory.cs" />
+    <Compile Include="web\core\aspnet\WebFormViewRegistry.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
-    <Compile Include="web\core\DisplayEngine.cs" />
+    <Compile Include="web\core\GetTheCurrentlyExecutingContext.cs" />
+    <Compile Include="web\core\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation.cs" />
     <Compile Include="web\core\ICreateRequests.cs" />
-    <Compile Include="web\core\IDisplayAReport.cs" />
+    <Compile Include="web\core\IDisplayAReport.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="web\core\IDisplayReports.cs" />
     <Compile Include="web\core\IFindCommands.cs" />
     <Compile Include="web\core\IFindViewsForModel.cs" />
@@ -105,11 +108,10 @@
     <Compile Include="web\core\RequestCommand.cs" />
     <Compile Include="web\core\RequestMatch.cs" />
     <Compile Include="web\core\stubs\Stub.cs" />
-    <Compile Include="web\core\stubs\StubDisplayEngine.cs" />
     <Compile Include="web\core\stubs\StubMissingCommand.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
-    <Compile Include="web\core\ViewRegistry.cs" />
+    <Compile Include="web\core\stubs\StubViewPathRegistry.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,7 +14,15 @@ namespace nothinbutdotnetstore.web.core.stubs
         {
             public InputModel map_a<InputModel>()
             {
-                object item = new ViewTheDepartmentsOfADepartmentInput();
+                object item = null;
+                if (typeof(InputModel).Equals(typeof(ViewTheDepartmentsOfADepartmentInput)))
+                {
+                    item = new ViewTheDepartmentsOfADepartmentInput();
+                }
+                else
+                {
+                    item = new ViewTheProductsInADepartmentInputModel();
+                }
                 return (InputModel) item;
             }
         }

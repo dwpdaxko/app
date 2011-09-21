@@ -7,7 +7,7 @@ CodeFile="DepartmentBrowser.aspx.cs"
 <asp:Content ID="content" runat="server" ContentPlaceHolderID="childContentPlaceHolder">
     <p class="ListHead">Select An Department</p>
             <table>            
-            <% foreach(var department in ((IEnumerable<Department>)this.Context.Items["blah"]))
+            <% foreach(var department in this.model)
                {
                 %>
               <%-- for each department --%>

@@ -15,8 +15,8 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
         }
 
         public QueryFor(IFetchA<ReportModel> query) : this(query,
-                                                  Stub.with<StubDisplayEngine>())
-        {
+                                                           new WebFormDisplayEngine()){
+
         }
 
         public void process(IContainRequestInformation request)

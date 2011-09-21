@@ -17,7 +17,7 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing.stubs
 
         public IEnumerable<Product> get_products_for(ViewTheProductsInADepartmentInputModel department)
         {
-            throw new System.NotImplementedException();
+            return Enumerable.Range(1, 100).Select(x => new Product() {name = x.ToString("Product 0")});
         }
 
     }
