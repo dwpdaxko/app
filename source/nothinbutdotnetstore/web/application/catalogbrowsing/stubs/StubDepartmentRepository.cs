@@ -19,5 +19,10 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing.stubs
         {
             throw new System.NotImplementedException();
         }
+
+        public OutputModel get_items_for<InputModel, OutputModel>(InputModel input_model)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

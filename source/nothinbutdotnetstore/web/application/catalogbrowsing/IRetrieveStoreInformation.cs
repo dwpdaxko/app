@@ -7,5 +7,6 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
         IEnumerable<Department> get_the_main_departments_in_the_store();
         IEnumerable<Department> get_departments_using(ViewTheDepartmentsOfADepartmentInput input_model);
         IEnumerable<Product> get_products_for(ViewTheProductsInADepartmentInputModel department);
+        OutputModel get_items_for<InputModel, OutputModel>(InputModel input_model);
     }
 }

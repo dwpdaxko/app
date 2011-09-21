@@ -113,6 +113,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowseTheStoreSpecs.cs" />
     <Compile Include="CommandRegistrySpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
     <Compile Include="MessageGeneratorSpecs.cs" />

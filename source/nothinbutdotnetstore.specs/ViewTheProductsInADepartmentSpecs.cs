@@ -11,7 +11,7 @@ namespace nothinbutdotnetstore.specs
     public class ViewTheProductsInADepartmentSpecs
     {
         public abstract class concern : Observes<IOrchestrateAnApplicationFeature,
-                                            ViewTheProductsInADepartment>
+                                            BrowseTheStore<ViewTheProductsInADepartmentInputModel, IEnumerable<Product>>>
         {
         }
 
@@ -31,7 +31,7 @@ namespace nothinbutdotnetstore.specs
                     request.setup(x => x.map_a<ViewTheProductsInADepartmentInputModel>())
                         .Return(view_products_command);
 
-                    product_repository.setup(x => x.get_products_for(view_products_command))
+                    product_repository.setup(x => x.get_items_for<ViewTheProductsInADepartmentInputModel, IEnumerable<Product>>(view_products_command))
                         .Return(products);
                 };
 
