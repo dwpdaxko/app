@@ -14,10 +14,7 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         public IEnumerator<IProcessOneRequest> GetEnumerator()
         {
-            yield return
-                new RequestCommand(x => true, new QueryFor<IEnumerable<Product>>(new GetTheProductsInADepartment()));
-            yield return
-                new RequestCommand(x => true, new QueryFor<IEnumerable<Department>>(new GetTheMainDepartments()));
+            return null;
         }
 
         public class GetTheMainDepartments : IFetchA<IEnumerable<Department>>

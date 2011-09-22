@@ -5,6 +5,9 @@ namespace nothinbutdotnetstore.web.core.aspnet
         WebFormFactory form_factory;
         IFindPathsToViews path_registry;
 
+
+        
+
         public WebFormViewRegistry(WebFormFactory form_factory, IFindPathsToViews path_registry)
         {
             this.form_factory = form_factory;

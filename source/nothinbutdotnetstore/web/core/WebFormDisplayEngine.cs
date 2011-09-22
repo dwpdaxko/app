@@ -1,7 +1,4 @@
-﻿using System.Web;
-using nothinbutdotnetstore.web.core.aspnet;
-
-namespace nothinbutdotnetstore.web.core
+﻿namespace nothinbutdotnetstore.web.core
 {
     public class WebFormDisplayEngine : IDisplayReports
     {
@@ -12,10 +9,6 @@ namespace nothinbutdotnetstore.web.core
         {
             this.view_registry = view_registry;
             this.current_context = current_context;
-        }
-
-        public WebFormDisplayEngine():this(new WebFormViewRegistry(), () => HttpContext.Current)
-        {
         }
 
         public void display<ReportModel>(ReportModel model)

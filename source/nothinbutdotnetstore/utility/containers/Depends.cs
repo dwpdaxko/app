@@ -11,7 +11,7 @@ namespace nothinbutdotnetstore.utility.containers
 
         public static IFetchDependencies on
         {
-            get{ throw new NotImplementedException();}
+            get { return container_resolver(); }
         }
     }
 }

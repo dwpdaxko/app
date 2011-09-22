@@ -1,5 +1,4 @@
 ﻿using System.Web;
-using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.core.aspnet
 {
@@ -7,10 +6,6 @@ namespace nothinbutdotnetstore.web.core.aspnet
     {
         IProcessRequests front_controller;
         ICreateRequests request_factory;
-
-        public WebHandler():this(new FrontController(),new StubRequestFactory())
-        {
-        }
 
         public WebHandler(IProcessRequests front_controller, ICreateRequests request_factory)
         {
