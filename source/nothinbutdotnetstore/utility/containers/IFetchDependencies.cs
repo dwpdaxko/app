@@ -2,6 +2,6 @@
 {
     public interface IFetchDependencies
     {
-         
+        Dependency a<Dependency>();
     }
 }

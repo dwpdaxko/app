@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using nothinbutdotnetstore.utility.containers;
 
 namespace nothinbutdotnetstore.web.core.aspnet
 {
@@ -11,6 +12,11 @@ namespace nothinbutdotnetstore.web.core.aspnet
         {
             this.front_controller = front_controller;
             this.request_factory = request_factory;
+        }
+
+        public WebHandler():this(Depends.on.a<IProcessRequests>(),
+            Depends.on.a<ICreateRequests>())
+        {
         }
 
         public void ProcessRequest(HttpContext context)
