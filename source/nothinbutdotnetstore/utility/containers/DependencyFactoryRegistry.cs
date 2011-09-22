@@ -6,16 +6,21 @@ namespace nothinbutdotnetstore.utility.containers
 {
     public class DependencyFactoryRegistry : IFindDependencyFactories
     {
-        IEnumerable<ICreateADependency> factories;
+        IDictionary<IRepresentAType,ICreateADependency> factories;
 
-        public DependencyFactoryRegistry(IEnumerable<ICreateADependency> factories)
+        public DependencyFactoryRegistry(IDictionary<IRepresentAType, ICreateADependency> factories)
         {
             this.factories = factories;
         }
 
         public ICreateADependency find_factory_for(Type dependency_type)
         {
-            return factories.First(x => x.can_create(dependency_type));
+            return factories[get_the_key_for(dependency_type)];
+        }
+
+        IRepresentAType get_the_key_for(Type dependency_type)
+        {
+            return factories.Keys.First(x => x.represents(dependency_type));
         }
     }
 }

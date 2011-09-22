@@ -15,24 +15,48 @@ namespace nothinbutdotnetstore.specs
 
         public class when_finding_a_factory_for_a_dependency  : concern
         {
-            Establish c = () =>
+            public class and_it_has_the_factory:when_finding_a_factory_for_a_dependency
             {
-                factories = Enumerable.Range(1, 100).Select(x => fake.an<ICreateADependency>()).ToList();
-                factory_that_can_create_the_dependency = fake.an<ICreateADependency>();
-                factories.Add(factory_that_can_create_the_dependency);
-                depends.on<IEnumerable<ICreateADependency>>(factories);
-                factory_that_can_create_the_dependency.setup(x => x.can_create(typeof(FakeDependency))).Return(true);
-            };
+                Establish c = () =>
+                {
+                    factory_that_can_create_the_dependency = fake.an<ICreateADependency>();
+                    key = fake.an<IRepresentAType>();
+                    factories = new Dictionary<IRepresentAType, ICreateADependency>();
 
-            Because b = () =>
-                factory = sut.find_factory_for(typeof(FakeDependency));
+                    factories.Add(key,factory_that_can_create_the_dependency);
 
-            It should_return_the_factory_that_knows_how_to_create_the_dependency = () =>
-                factory.ShouldEqual(factory_that_can_create_the_dependency);
+                    depends.on(factories);
+                    key.setup(x => x.represents(typeof(FakeDependency))).Return(true);
+                };
 
-            static List<ICreateADependency> factories;
-            static ICreateADependency factory_that_can_create_the_dependency;
-            static ICreateADependency factory;
+                Because b = () =>
+                    factory = sut.find_factory_for(typeof(FakeDependency));
+
+                It should_return_the_factory_that_knows_how_to_create_the_dependency = () =>
+                    factory.ShouldEqual(factory_that_can_create_the_dependency);
+
+                static IDictionary<IRepresentAType,ICreateADependency> factories;
+                static ICreateADependency factory_that_can_create_the_dependency;
+                static ICreateADependency factory;
+                static IRepresentAType key;
+            }
+            public class and_it_does_not_have_the_factory:when_finding_a_factory_for_a_dependency
+            {
+                Establish c = () =>
+                {
+                    depends.on<IDictionary<IRepresentAType,ICreateADependency>>(new Dictionary<IRepresentAType, ICreateADependency>());
+                };
+
+                Because b = () =>
+                {
+                };
+
+                It should = () =>
+                {
+
+                };
+
+            }
         }
 
         class FakeDependency

@@ -86,6 +86,7 @@
     <Compile Include="utility\containers\ICreateADependency.cs" />
     <Compile Include="utility\containers\IFindDependencyFactories.cs" />
     <Compile Include="utility\containers\IFetchDependencies.cs" />
+    <Compile Include="utility\containers\IRepresentAType.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\IProcessAn.cs" />
     <Compile Include="utility\IProcessAndReturnAValue.cs" />
