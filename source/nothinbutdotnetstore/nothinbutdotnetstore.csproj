@@ -78,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="utility\EnumerableExtensions.cs" />
+    <Compile Include="utility\IProcessAn.cs" />
+    <Compile Include="utility\IProcessAndReturnAValue.cs" />
     <Compile Include="web\application\catalogbrowsing\QueryFor.cs" />
     <Compile Include="web\application\catalogbrowsing\Department.cs" />
     <Compile Include="web\application\catalogbrowsing\IFetchA.cs" />
@@ -91,14 +94,14 @@
     <Compile Include="web\core\aspnet\WebFormViewRegistry.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\GetTheCurrentlyExecutingContext.cs" />
-    <Compile Include="web\core\link_builder\IBuildUrlsFromTokens.cs" />
     <Compile Include="web\core\link_builder\IBuildLinks.cs" />
+    <Compile Include="web\core\link_builder\IManageTokens.cs" />
+    <Compile Include="web\core\link_builder\IProcessAToken.cs" />
     <Compile Include="web\core\link_builder\Link.cs" />
     <Compile Include="web\core\link_builder\LinkBuilder.cs" />
     <Compile Include="web\core\link_builder\LinkBuilderFactory.cs" />
-    <Compile Include="web\core\link_builder\RequestTypeLinkItem.cs" />
-    <Compile Include="web\core\link_builder\StubUrlBuilder.cs" />
-    <Compile Include="web\core\link_builder\UrlFromTokensBuilder.cs" />
+    <Compile Include="web\core\link_builder\Token.cs" />
+    <Compile Include="web\core\link_builder\UrlTokens.cs" />
     <Compile Include="web\core\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation.cs" />

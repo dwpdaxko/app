@@ -1,23 +1,24 @@
 using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Reflection;
-using nothinbutdotnetstore.web.core.stubs;
+using nothinbutdotnetstore.utility;
 
 namespace nothinbutdotnetstore.web.core.link_builder
 {
-	public class LinkBuilder : IBuildLinks
-	{
-        List<ILinkItem> link_items = new List<ILinkItem>();
+    public class LinkBuilder : IBuildLinks
+    {
+        public IManageTokens tokens;
+        public IProcessAToken visitor;
 
-	    public LinkBuilder(Type type)
-	    {
-	        throw new NotImplementedException();
-	    }
+        public LinkBuilder(IManageTokens tokens, Type initial_request, IProcessAToken visitor)
+        {
+            this.tokens = tokens;
+            this.visitor = visitor;
+            tokens.store_token_for(UrlTokens.request_type, initial_request);
+        }
 
-	    public IEnumerable<ILinkItem> get_link_items()
-	    {
-	        return link_items;
-	    }
-	}
+        public override string ToString()
+        {
+            return tokens.get_result_of_visiting_all_items_with(visitor);
+        }
+
+    }
 }

@@ -13,13 +13,8 @@ CodeFile="DepartmentBrowser.aspx.cs"
                 %>
               <%-- for each department --%>
               <tr class="ListItem">
-               <td><a href="<%= Link.to_run<ViewTheDepartmentsOfADepartmentRequest>()
-                                    .conditionally<ViewTheProductsInADepartmentInputModel>(department.has_products)
-                                    .conditionally<ViewTheProductsInADepartmentInputModel>(department.blah)
-                                    .conditionally<ViewTheProductsInADepartmentInputModel>(department.whatever)
-                                    .include(department, x => x.id)
-                                    .include(department, x => x.something_else)
-                %>"><%= department.name %></a></td>
+               <td><a href="#">
+                <%= department.name %></a></td>
            	  </tr>        
               <% } %>
       	    </table>            
