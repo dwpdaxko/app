@@ -1,6 +1,6 @@
 ﻿namespace nothinbutdotnetstore.utility.containers
 {
-    public interface IFactoryRegistry
+    public interface IFindTypeFactories
     {
         ICreateObjects factory_for<Dependency>(); 
     }
