@@ -120,6 +120,7 @@
     <Content Include="scripts\jquery-1.3.2.js" />
     <Content Include="views\Store.master" />
     <None Include="images\Thumbs.db" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nothinbutdotnetstore\nothinbutdotnetstore.csproj">

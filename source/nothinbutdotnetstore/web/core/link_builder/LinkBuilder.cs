@@ -2,15 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
+using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.core.link_builder
 {
     public class LinkBuilder : ILinkBuilder, IFinalLinkBuilder
     {
+        readonly IBuildUrlsFromTokens url_builder;
         public IDictionary<string, string> tokens { get; set; }
 
-        public LinkBuilder()
+        public LinkBuilder() : this(Stub.with<StubUrlBuilder>())
         {
+        }
+
+        public LinkBuilder(IBuildUrlsFromTokens url_builder)
+        {
+            this.url_builder = url_builder;
+
             tokens = new Dictionary<string, string>();
             tokens[get_request_type_key] = "";
         }
@@ -30,7 +38,7 @@ namespace nothinbutdotnetstore.web.core.link_builder
             get { return tokens[get_request_type_key]; }
         }
 
-        public void include<T>(T instance, Expression<Func<T, object>> property)
+        public IFinalLinkBuilder include<T>(T instance, Expression<Func<T, object>> property)
         {
             var unary_expression = (UnaryExpression) property.Body;
             var member_expression = (MemberExpression) unary_expression.Operand;
@@ -40,6 +48,8 @@ namespace nothinbutdotnetstore.web.core.link_builder
             var value = property_info.GetValue(instance, null);
 
             tokens[property_name] = value.ToString();
+
+            return this;
         }
 
         public IFinalLinkBuilder conditionally<T>(bool condition)
@@ -49,6 +59,10 @@ namespace nothinbutdotnetstore.web.core.link_builder
 
             return this;
         }
-    }
 
+        public override string ToString()
+        {
+            return url_builder.build(tokens);
+        }
+    }
 }
