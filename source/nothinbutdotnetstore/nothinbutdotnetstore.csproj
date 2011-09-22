@@ -78,9 +78,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="utility\containers\ContainerResolver.cs" />
+    <Compile Include="utility\containers\Depends.cs" />
+    <Compile Include="utility\containers\IFetchDependencies.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\IProcessAn.cs" />
     <Compile Include="utility\IProcessAndReturnAValue.cs" />
+    <Compile Include="web\application\catalogbrowsing\BrowsingController.cs" />
     <Compile Include="web\application\catalogbrowsing\QueryFor.cs" />
     <Compile Include="web\application\catalogbrowsing\Department.cs" />
     <Compile Include="web\application\catalogbrowsing\IFetchA.cs" />

@@ -15,11 +15,6 @@ namespace nothinbutdotnetstore.web.core
             this.special_case = special_case;
         }
 
-        public CommandRegistry():this(new StubSetOfCommands(),
-            new StubMissingCommand())
-        {
-        }
-
         public IProcessOneRequest get_the_command_that_can_process(IContainRequestInformation request)
         {
             return all_commands.FirstOrDefault(x => x.can_process(request)) ?? special_case;

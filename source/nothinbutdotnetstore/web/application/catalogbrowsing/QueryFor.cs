@@ -1,8 +1,8 @@
 ﻿using nothinbutdotnetstore.web.core;
-using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
+
     public class QueryFor<ReportModel> : IOrchestrateAnApplicationFeature
     {
         IFetchA<ReportModel> query;
@@ -12,11 +12,6 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
         {
             this.query = query;
             this.display_engine = display_engine;
-        }
-
-        public QueryFor(IFetchA<ReportModel> query) : this(query,
-                                                           new WebFormDisplayEngine()){
-
         }
 
         public void process(IContainRequestInformation request)

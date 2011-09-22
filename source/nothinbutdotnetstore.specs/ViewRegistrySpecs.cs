@@ -48,7 +48,6 @@ namespace nothinbutdotnetstore.specs
                 
             static IDisplayAReport<FakeViewModel> view;
             static FakeViewModel model;
-            static bool view_was_created;
             static IDisplayAReport<FakeViewModel> result;
             static string path_from_registry;
             static IFindPathsToViews path_registry;

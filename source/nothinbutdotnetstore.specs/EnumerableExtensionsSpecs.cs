@@ -46,7 +46,6 @@ namespace nothinbutdotnetstore.specs
                 items.each(x => visitor.received(y => y.process(x)));
 
 
-            static int number_of_items_processed;
             static IList<int> items;
             static IProcessAn<int> visitor;
         } 
@@ -73,7 +72,6 @@ namespace nothinbutdotnetstore.specs
 
 
 
-            static int number_of_items_processed;
             static IList<int> items;
             static IProcessAndReturnAValue<int,int> visitor;
             static int result;
