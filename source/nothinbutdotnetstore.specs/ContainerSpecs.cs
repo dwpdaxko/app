@@ -1,7 +1,7 @@
 ﻿using System;
-using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
+using Machine.Specifications;
 using nothinbutdotnetstore.utility.containers;
 
 namespace nothinbutdotnetstore.specs
@@ -25,7 +25,7 @@ namespace nothinbutdotnetstore.specs
                         factory = fake.an<ICreateADependency>();
                         find_dependency_factories = depends.on<IFindDependencyFactories>();
 
-                        find_dependency_factories.setup(f => f.factory_for(typeof(FakeType))).Return(factory);
+                        find_dependency_factories.setup(f => f.find_factory_for(typeof(FakeType))).Return(factory);
                         factory.setup(x => x.create()).Return(the_dependency);
                     };
 
@@ -49,7 +49,7 @@ namespace nothinbutdotnetstore.specs
                         factory = fake.an<ICreateADependency>();
                         find_dependency_factories = depends.on<IFindDependencyFactories>();
 
-                        find_dependency_factories.setup(f => f.factory_for(typeof(FakeType))).Return(factory);
+                        find_dependency_factories.setup(f => f.find_factory_for(typeof(FakeType))).Return(factory);
                         factory.setup(x => x.create()).Return(the_dependency);
                     };
 
@@ -75,7 +75,7 @@ namespace nothinbutdotnetstore.specs
                     factory = fake.an<ICreateADependency>();
                     find_dependency_factories = depends.on<IFindDependencyFactories>();
 
-                    find_dependency_factories.setup(f => f.factory_for(typeof(FakeType))).Return(factory);
+                    find_dependency_factories.setup(f => f.find_factory_for(typeof(FakeType))).Return(factory);
                     factory.setup(x => x.create()).Throw(inner_exception);
                 };
 

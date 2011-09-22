@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="CommandRegistrySpecs.cs" />
     <Compile Include="ContainerSpecs.cs" />
+    <Compile Include="DependencyFactoryRegistrySpecs.cs" />
     <Compile Include="DependsSpecs.cs" />
     <Compile Include="DisplayEngineSpecs.cs" />
     <Compile Include="EnumerableExtensionsSpecs.cs" />

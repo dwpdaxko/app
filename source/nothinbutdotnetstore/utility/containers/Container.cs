@@ -20,7 +20,7 @@ namespace nothinbutdotnetstore.utility.containers
         {
             try
             {
-                return dependency_factories.factory_for(dependency_type).create();
+                return dependency_factories.find_factory_for(dependency_type).create();
             }
             catch (Exception e)
             {

@@ -81,6 +81,7 @@
     <Compile Include="utility\containers\Container.cs" />
     <Compile Include="utility\containers\ContainerResolver.cs" />
     <Compile Include="utility\containers\DependencyCreationException.cs" />
+    <Compile Include="utility\containers\DependencyFactoryRegistry.cs" />
     <Compile Include="utility\containers\Depends.cs" />
     <Compile Include="utility\containers\ICreateADependency.cs" />
     <Compile Include="utility\containers\IFindDependencyFactories.cs" />
