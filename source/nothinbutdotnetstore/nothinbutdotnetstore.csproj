@@ -80,9 +80,10 @@
     <Compile Include="MessageGenerator.cs" />
     <Compile Include="utility\containers\Container.cs" />
     <Compile Include="utility\containers\ContainerResolver.cs" />
+    <Compile Include="utility\containers\DependencyCreationException.cs" />
     <Compile Include="utility\containers\Depends.cs" />
-    <Compile Include="utility\containers\ICreateOneObject.cs" />
-    <Compile Include="utility\containers\IFindTypeFactories.cs" />
+    <Compile Include="utility\containers\ICreateADependency.cs" />
+    <Compile Include="utility\containers\IFindDependencyFactories.cs" />
     <Compile Include="utility\containers\IFetchDependencies.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\IProcessAn.cs" />
