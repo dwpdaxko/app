@@ -40,9 +40,6 @@ namespace nothinbutdotnetstore.web.core.link_builder
 
 		public IFinalLinkBuilder include<Instance, Property>(Instance instance, Expression<Func<Instance, Property>> property)
 		{
-			//var unary_expression = (UnaryExpression) property.Body;
-			//var member_expression = (MemberExpression) unary_expression.Operand;
-
 			var member_expression = (MemberExpression) property.Body;
 			var property_info = (PropertyInfo)member_expression.Member;
 			var property_name = property_info.Name;
