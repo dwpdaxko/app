@@ -11,7 +11,7 @@ namespace nothinbutdotnetstore.web.core.link_builder
 
             var query_string = build_query_string(tokens);
 
-            return string.Format("{0}{1}",view,query_string);
+            return string.Format("/{0}.daxko{1}",view,query_string);
         }
 
         static string build_query_string(IDictionary<string, string> tokens)
