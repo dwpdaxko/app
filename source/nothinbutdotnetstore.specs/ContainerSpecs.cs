@@ -9,17 +9,17 @@ namespace nothinbutdotnetstore.specs
     {
         public abstract class concern : Observes<IFetchDependencies, Container>
         {
-            
         }
 
         public class when_fetching_a_dependency_from_the_container : concern
         {
             Establish context = () =>
-                {
-                    find_type_factories = depends.on<IFindTypeFactories>();
-                };
+            {
+                find_type_factories = depends.on<IFindTypeFactories>();
+            };
 
-            Because b = () => sut.a<FakeType>();
+            Because b = () => 
+                sut.a<FakeType>();
 
             It should_get_the_type_factory_based_on_the_specified_dependency =
                 () => find_type_factories.received(x => x.factory_for<FakeType>());
@@ -28,7 +28,7 @@ namespace nothinbutdotnetstore.specs
         }
     }
 
-    internal class FakeType
+    class FakeType
     {
     }
 }
