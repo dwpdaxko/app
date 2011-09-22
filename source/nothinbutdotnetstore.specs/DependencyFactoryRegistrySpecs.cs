@@ -40,22 +40,28 @@ namespace nothinbutdotnetstore.specs
                 static ICreateADependency factory;
                 static IRepresentAType key;
             }
+
+
             public class and_it_does_not_have_the_factory:when_finding_a_factory_for_a_dependency
             {
-                Establish c = () =>
-                {
-                    depends.on<IDictionary<IRepresentAType,ICreateADependency>>(new Dictionary<IRepresentAType, ICreateADependency>());
-                };
+                Establish c = 
+                    () =>
+                        {
+                            the_missing_type_factory = fake.an<ICreateADependency>();
+                            depends.on(the_missing_type_factory);
+                            depends.on<IDictionary<IRepresentAType, ICreateADependency>>(new Dictionary<IRepresentAType, ICreateADependency>());
+                        };
 
                 Because b = () =>
                 {
+                    result = sut.find_factory_for(typeof(FakeDependency));
                 };
 
-                It should = () =>
-                {
+                It should_return_a_missing_type_factory = 
+                    () => result.ShouldBe(typeof(MissingTypeFactory));
 
-                };
-
+                static ICreateADependency result;
+                static ICreateADependency the_missing_type_factory;
             }
         }
 
