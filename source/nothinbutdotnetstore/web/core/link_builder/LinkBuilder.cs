@@ -6,63 +6,65 @@ using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.core.link_builder
 {
-    public class LinkBuilder : IBuildLinks
-    {
-        readonly IBuildUrlsFromTokens url_builder;
-        public IDictionary<string, string> tokens { get; set; }
+	public class LinkBuilder : IBuildLinks
+	{
+		readonly IBuildUrlsFromTokens url_builder;
+		public IDictionary<string, string> tokens { get; set; }
 
-        public LinkBuilder() : this(Stub.with<StubUrlBuilder>())
-        {
-        }
+		public LinkBuilder() : this(Stub.with<StubUrlBuilder>())
+		{
+		}
 
-        public LinkBuilder(IBuildUrlsFromTokens url_builder)
-        {
-            this.url_builder = url_builder;
+		public LinkBuilder(IBuildUrlsFromTokens url_builder)
+		{
+			this.url_builder = url_builder;
 
-            tokens = new Dictionary<string, string>();
-            tokens[get_request_type_key] = "";
-        }
+			tokens = new Dictionary<string, string>();
+			tokens[get_request_type_key] = "";
+		}
 
-        public void set_request_type(Type type)
-        {
-            this.tokens[get_request_type_key] = type.Name;
-        }
+		public void set_request_type(Type type)
+		{
+			this.tokens[get_request_type_key] = type.Name;
+		}
 
-        string get_request_type_key
-        {
-            get { return "request_type"; }
-        }
+		string get_request_type_key
+		{
+			get { return "request_type"; }
+		}
 
-        public string get_request_type_token
-        {
-            get { return tokens[get_request_type_key]; }
-        }
+		public string get_request_type_token
+		{
+			get { return tokens[get_request_type_key]; }
+		}
 
-        public IFinalLinkBuilder include<T>(T instance, Expression<Func<T, object>> property)
-        {
-            var unary_expression = (UnaryExpression) property.Body;
-            var member_expression = (MemberExpression) unary_expression.Operand;
-            var property_info = (PropertyInfo)member_expression.Member;
-            var property_name = property_info.Name;
+		public IFinalLinkBuilder include<Instance, Property>(Instance instance, Expression<Func<Instance, Property>> property)
+		{
+			//var unary_expression = (UnaryExpression) property.Body;
+			//var member_expression = (MemberExpression) unary_expression.Operand;
 
-            var value = property_info.GetValue(instance, null);
+			var member_expression = (MemberExpression) property.Body;
+			var property_info = (PropertyInfo)member_expression.Member;
+			var property_name = property_info.Name;
 
-            tokens[property_name] = value.ToString();
+			var value = (Property)property_info.GetValue(instance, null);
 
-            return this;
-        }
+			tokens[property_name] = value.ToString();
 
-        public IFinalLinkBuilder conditionally<T>(bool condition)
-        {
-            if (condition)
-                set_request_type(typeof(T));
+			return this;
+		}
 
-            return this;
-        }
+		public IFinalLinkBuilder conditionally<T>(bool condition)
+		{
+			if (condition)
+				set_request_type(typeof(T));
 
-        public override string ToString()
-        {
-            return url_builder.build(tokens);
-        }
-    }
+			return this;
+		}
+
+		public override string ToString()
+		{
+			return url_builder.build(tokens);
+		}
+	}
 }
