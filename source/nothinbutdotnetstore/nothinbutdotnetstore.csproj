@@ -82,7 +82,7 @@
     <Compile Include="utility\containers\ContainerResolver.cs" />
     <Compile Include="utility\containers\Depends.cs" />
     <Compile Include="utility\containers\ICreateObjects.cs" />
-    <Compile Include="utility\containers\IFactoryRegistry.cs" />
+    <Compile Include="utility\containers\IFindTypeFactories.cs" />
     <Compile Include="utility\containers\IFetchDependencies.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\IProcessAn.cs" />
