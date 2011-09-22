@@ -57,8 +57,8 @@ namespace nothinbutdotnetstore.specs
                     result = sut.find_factory_for(typeof(FakeDependency));
                 };
 
-                It should_return_a_missing_type_factory = 
-                    () => result.ShouldBe(typeof(MissingTypeFactory));
+                It should_return_a_missing_type_factory =
+                    () => result.ShouldEqual(the_missing_type_factory);
 
                 static ICreateADependency result;
                 static ICreateADependency the_missing_type_factory;
