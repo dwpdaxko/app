@@ -6,7 +6,7 @@ namespace nothinbutdotnetstore.web.core.link_builder
     {
         public static IBuildLinks to_run<T>()
         {
-            var link_builder = new LinkBuilder();
+            var link_builder = new LinkBuilder(new UrlFromTokensBuilder());
             link_builder.set_request_type(typeof (T));
             return link_builder;
         }
