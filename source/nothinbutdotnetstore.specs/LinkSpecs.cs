@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Machine.Specifications;
-using Rhino.Mocks;
-using developwithpassion.specifications.rhinomocks;
 using developwithpassion.specifications.extensions;
-using nothinbutdotnetstore.web.core;
+using developwithpassion.specifications.rhinomocks;
 using nothinbutdotnetstore.web.core.link_builder;
 
 namespace nothinbutdotnetstore.specs
@@ -11,23 +9,28 @@ namespace nothinbutdotnetstore.specs
     [Subject(typeof(Link))]
     public class LinkSpecs
     {
-        public abstract class concern
+        public abstract class concern:Observes
         {
         }
 
-        public class when_asked_to_run_a_link: concern
+        public class when_asked_to_run_a_link : concern
         {
+            Establish c = () =>
+            {
+                link_builder = fake.an<IBuildLinks>();
+                LinkBuilderFactory factory = x => link_builder;
+                spec.change(() => Link.builder_factory).to(factory);
+            };
 
             Because b = () =>
                 result = Link.to_run<Link>();
 
-            It should_return_the_link_builder = () =>
-                result.ShouldBeAn<IBuildLinks>();
+            It should_return_the_link_builder_created_using_the_factory = () =>
+                result.ShouldEqual(link_builder);
 
-            It should_contain_the_generic_type_name_in_the_dictionary = () =>
-                result.tokens.Contains(new KeyValuePair<string, string>("request_type", "Link"));
 
             static IBuildLinks result;
+            static IBuildLinks link_builder;
         }
     }
 }
