@@ -93,7 +93,7 @@
     <Compile Include="web\core\GetTheCurrentlyExecutingContext.cs" />
     <Compile Include="web\core\link_builder\IBuildUrlsFromTokens.cs" />
     <Compile Include="web\core\link_builder\IFinalLinkBuilder.cs" />
-    <Compile Include="web\core\link_builder\ILinkBuilder.cs" />
+    <Compile Include="web\core\link_builder\IBuildLinks.cs" />
     <Compile Include="web\core\link_builder\Link.cs" />
     <Compile Include="web\core\link_builder\LinkBuilder.cs" />
     <Compile Include="web\core\link_builder\StubUrlBuilder.cs" />

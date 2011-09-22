@@ -22,12 +22,12 @@ namespace nothinbutdotnetstore.specs
                 result = Link.to_run<Link>();
 
             It should_return_the_link_builder = () =>
-                result.ShouldBeAn<ILinkBuilder>();
+                result.ShouldBeAn<IBuildLinks>();
 
             It should_contain_the_generic_type_name_in_the_dictionary = () =>
                 result.tokens.Contains(new KeyValuePair<string, string>("request_type", "Link"));
 
-            static ILinkBuilder result;
+            static IBuildLinks result;
         }
     }
 }

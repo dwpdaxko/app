@@ -6,7 +6,7 @@ using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.core.link_builder
 {
-    public class LinkBuilder : ILinkBuilder
+    public class LinkBuilder : IBuildLinks
     {
         readonly IBuildUrlsFromTokens url_builder;
         public IDictionary<string, string> tokens { get; set; }

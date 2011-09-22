@@ -11,7 +11,7 @@ namespace nothinbutdotnetstore.specs
     [Subject(typeof(LinkBuilder))]
     public class LinkBuilderSpecs
     {
-        public abstract class concern : Observes<ILinkBuilder,LinkBuilder>
+        public abstract class concern : Observes<IBuildLinks,LinkBuilder>
         {
         }
 
