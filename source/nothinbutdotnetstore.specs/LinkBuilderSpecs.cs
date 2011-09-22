@@ -21,15 +21,15 @@ namespace nothinbutdotnetstore.specs
             public class that_evaluates_to_true
             {
                 Because b = () =>
-                    final_builder = sut.conditionally<LinkBuilder>(true);
+                    link_builder = sut.conditionally<LinkBuilder>(true);
 
-                It should_return_a_final_link_builder = () =>
-                    final_builder.ShouldBeAn<IFinalLinkBuilder>();
+                It should_return_a_link_builder = () =>
+                    link_builder.ShouldBeAn<IBuildLinks>();
 
                 It should_replace_the_request_type_value_with_the_type_of_the_conditional_generic_type = () =>
                     sut.get_request_type_token.ShouldEqual("LinkBuilder");
 
-                static IFinalLinkBuilder final_builder;
+                static IBuildLinks link_builder;
             }
 
             public class when_overriding_the_tostring_method : concern
