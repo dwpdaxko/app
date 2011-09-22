@@ -51,7 +51,7 @@ namespace nothinbutdotnetstore.web.core.link_builder
 			return this;
 		}
 
-		public IFinalLinkBuilder conditionally<T>(bool condition)
+		public IBuildLinks conditionally<T>(bool condition)
 		{
 			if (condition)
 				set_request_type(typeof(T));

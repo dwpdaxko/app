@@ -6,7 +6,7 @@ namespace nothinbutdotnetstore.web.core.link_builder
 {
     public interface IBuildLinks : IFinalLinkBuilder
     {
-        IFinalLinkBuilder conditionally<T>(bool condition);
+        IBuildLinks conditionally<T>(bool condition);
         string get_request_type_token { get; }
     }
 }
