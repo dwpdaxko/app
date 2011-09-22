@@ -16,15 +16,15 @@ namespace nothinbutdotnetstore.specs
         {
             Establish context = () =>
                 {
-                    factory_registry = depends.on<IFactoryRegistry>();
+                    find_type_factories = depends.on<IFindTypeFactories>();
                 };
 
             Because b = () => sut.a<FakeType>();
 
             It should_get_the_type_factory_based_on_the_specified_dependency =
-                () => factory_registry.received(x => x.factory_for<FakeType>());
+                () => find_type_factories.received(x => x.factory_for<FakeType>());
 
-            static IFactoryRegistry factory_registry;
+            static IFindTypeFactories find_type_factories;
         }
     }
 
