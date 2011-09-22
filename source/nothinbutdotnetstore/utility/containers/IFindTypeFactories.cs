@@ -2,6 +2,6 @@
 {
     public interface IFindTypeFactories
     {
-        ICreateObjects factory_for<Dependency>(); 
+        ICreateOneObject factory_for<Dependency>(); 
     }
 }

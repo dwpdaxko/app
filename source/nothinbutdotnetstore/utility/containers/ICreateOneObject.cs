@@ -1,7 +1,7 @@
 ﻿namespace nothinbutdotnetstore.utility.containers
 {
-    public interface ICreateObjects
+    public interface ICreateOneObject
     {
-         
+    	T create<T>();
     }
 }
