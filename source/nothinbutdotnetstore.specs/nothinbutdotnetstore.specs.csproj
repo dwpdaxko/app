@@ -116,6 +116,8 @@
     <Compile Include="CommandRegistrySpecs.cs" />
     <Compile Include="DisplayEngineSpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
+    <Compile Include="LinkBuilderSpecs.cs" />
+    <Compile Include="LinkSpecs.cs" />
     <Compile Include="MessageGeneratorSpecs.cs" />
     <Compile Include="RequestCommandSpecs.cs" />
     <Compile Include="utility\ObjectFactory.cs" />

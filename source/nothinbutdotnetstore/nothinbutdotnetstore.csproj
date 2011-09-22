@@ -91,6 +91,10 @@
     <Compile Include="web\core\aspnet\WebFormViewRegistry.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\GetTheCurrentlyExecutingContext.cs" />
+    <Compile Include="web\core\link_builder\IFinalLinkBuilder.cs" />
+    <Compile Include="web\core\link_builder\ILinkBuilder.cs" />
+    <Compile Include="web\core\link_builder\Link.cs" />
+    <Compile Include="web\core\link_builder\LinkBuilder.cs" />
     <Compile Include="web\core\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation.cs" />
