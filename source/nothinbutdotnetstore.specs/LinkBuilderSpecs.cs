@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Machine.Fakes;
 using Machine.Specifications;
 using Rhino.Mocks;
@@ -8,75 +9,30 @@ using nothinbutdotnetstore.web.core.link_builder;
 
 namespace nothinbutdotnetstore.specs
 {
-    [Subject(typeof(LinkBuilder))]
+    [Subject(typeof (LinkBuilder))]
     public class LinkBuilderSpecs
     {
-        public abstract class concern : Observes<IBuildLinks,LinkBuilder>
+        class FakeRequest {}
+
+        public abstract class concern : Observes<IBuildLinks, LinkBuilder>
         {
         }
 
-
-        public class when_asked_for_a_conditional: concern
-        {
-            public class that_evaluates_to_true
-            {
-                Because b = () =>
-                    link_builder = sut.conditionally<LinkBuilder>(true);
-
-                It should_return_a_link_builder = () =>
-                    link_builder.ShouldBeAn<IBuildLinks>();
-
-                It should_replace_the_request_type_value_with_the_type_of_the_conditional_generic_type = () =>
-                    sut.get_request_type_token.ShouldEqual("LinkBuilder");
-
-                static IBuildLinks link_builder;
-            }
-
-            public class when_overriding_the_tostring_method : concern
-            {
-                Establish context = () =>
-                    {
-                        url_builder = depends.on<IBuildUrlsFromTokens>();
-                    };
-
-                Because b = () =>
-                    sut.ToString();
-
-                It should_delegate_building_the_url_to_the_url_builder_with_the_tokens_from_the_link_builder = () =>
-                    url_builder.received(x => x.build(sut.tokens));
-
-                static IBuildUrlsFromTokens url_builder;
-            }
-		
-        }
-
-        public abstract class final_concern : Observes<IFinalLinkBuilder,LinkBuilder>
-        {
-        }
-
-        public class when_asked_to_include_a_property_value : final_concern
+        public class when_asked_for_the_a_link_for_a_single_request : concern
         {
             Establish context = () =>
-                    {
-                        blah = new FakeDepartment() {id = 1};
-                    };
+            {
+                sut_factory.create_using(() => new LinkBuilder(typeof(FakeRequest)));
+            };
 
-            Because b = () =>
-                final_builder = sut.include(blah, x => x.id);
+            It the_link_items_should_contain_only_one_item_with_the_request_type = () =>
+                sut.get_link_items().Count().ShouldEqual(1);
 
-            It should_return_a_final_link_builder = () =>
-                final_builder.ShouldBeAn<IFinalLinkBuilder>();
-
-            It should_add_the_property_name_and_value_token_of_the_instance = () =>
-                sut.tokens["id"].ShouldEqual("1");               
-
-            static FakeDepartment blah;
-            static IFinalLinkBuilder final_builder;
+            It the_only_link_item_should_contain_the_request_type = () =>
+                sut.get_link_items().Cast<RequestTypeLinkItem>().Single().request_type.ShouldEqual(typeof(FakeRequest));
+            
+            static LinkBuilder result;
         }
-    }
-
-    internal class FakeDepartment
-    {
-        public long id { get; set; }
+		
     }
 }
