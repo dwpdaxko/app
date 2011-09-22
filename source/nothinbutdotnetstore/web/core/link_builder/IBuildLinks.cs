@@ -1,8 +1,13 @@
+using System.Collections.Generic;
+
 namespace nothinbutdotnetstore.web.core.link_builder
 {
-    public interface IBuildLinks : IFinalLinkBuilder
+    public interface IBuildLinks
     {
-        IBuildLinks conditionally<T>(bool condition);
-        string get_request_type_token { get; }
+        IEnumerable<ILinkItem> get_link_items();
+    }
+
+    public interface ILinkItem
+    {
     }
 }

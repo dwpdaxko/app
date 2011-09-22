@@ -15,7 +15,10 @@ CodeFile="DepartmentBrowser.aspx.cs"
               <tr class="ListItem">
                <td><a href="<%= Link.to_run<ViewTheDepartmentsOfADepartmentRequest>()
                                     .conditionally<ViewTheProductsInADepartmentInputModel>(department.has_products)
+                                    .conditionally<ViewTheProductsInADepartmentInputModel>(department.blah)
+                                    .conditionally<ViewTheProductsInADepartmentInputModel>(department.whatever)
                                     .include(department, x => x.id)
+                                    .include(department, x => x.something_else)
                 %>"><%= department.name %></a></td>
            	  </tr>        
               <% } %>

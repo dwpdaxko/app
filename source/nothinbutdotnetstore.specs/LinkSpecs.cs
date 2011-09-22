@@ -18,7 +18,10 @@ namespace nothinbutdotnetstore.specs
             Establish c = () =>
             {
                 link_builder = fake.an<IBuildLinks>();
-                LinkBuilderFactory factory = x => link_builder;
+                LinkBuilderFactory factory = x =>
+                {
+                    return link_builder;
+                };
                 spec.change(() => Link.builder_factory).to(factory);
             };
 
