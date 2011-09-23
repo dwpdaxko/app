@@ -56,6 +56,8 @@ namespace nothinbutdotnetstore.tasks
             factories.Add(new SimpleTypeKey(typeof(Contract)), new
                                                                    SimpleDependencyFactory(implementation));
         }
+
+
     }
 
     internal class StubCommandRegistry : IFindCommands

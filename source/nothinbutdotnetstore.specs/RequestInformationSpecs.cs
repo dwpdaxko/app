@@ -1,8 +1,11 @@
 ﻿using System.Collections.Specialized;
-using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
+using Machine.Specifications;
+using nothinbutdotnetstore.utility;
+using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.web.core;
+using nothinbutdotnetstore.web.core.link_builder;
 
 namespace nothinbutdotnetstore.specs
 {
@@ -39,6 +42,41 @@ namespace nothinbutdotnetstore.specs
             static NameValueCollection request_data;
             static FakeInputModel model;
             static IFindMappers mapper_registry;
+        }
+
+        public class when_determining_whether_a_request_was_made_for_a_input_model : concern
+        {
+            public class and_there_is_a_request_type_token_that_matches_the_name_of_the_input_model
+            {
+                Establish c = () =>
+                {
+                    collection = new NameValueCollection() {{UrlTokens.request_type, "FakeInputModel"}};
+                    depends.on(collection);
+                };
+
+                It should_return_true = () =>
+                    sut.was_made_for<FakeInputModel>().ShouldBeTrue();
+
+                static NameValueCollection collection;
+                static ICreateSimpleTokens token_factory;
+                static IFetchDependencies resolver;
+            }
+
+            public class and_there_is_not_a_request_type_token_that_matches_the_name_of_the_input_model
+            {
+                Establish c = () =>
+                {
+                    collection = new NameValueCollection() { { UrlTokens.request_type, "blah" } };
+                    depends.on(collection);
+                };
+
+                It should_return_false = () =>
+                    sut.was_made_for<FakeInputModel>().ShouldBeFalse();
+
+                static NameValueCollection collection;
+                static ICreateSimpleTokens token_factory;
+                static IFetchDependencies resolver;
+            }
         }
 
         public class FakeInputModel
