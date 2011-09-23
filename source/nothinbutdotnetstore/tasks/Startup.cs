@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
+using System.Web.Compilation;
 using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.utility.containers.simple;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
 using nothinbutdotnetstore.web.application.catalogbrowsing.stubs;
 using nothinbutdotnetstore.web.core;
+using nothinbutdotnetstore.web.core.aspnet;
 using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.tasks
@@ -30,6 +33,11 @@ namespace nothinbutdotnetstore.tasks
 
         static void populate_factories()
         {
+            register<IFindPathsToViews>(() => Stub.with<StubViewPathRegistry>());
+            register<IFindViewForModel>(() => new WebFormViewRegistry(BuildManager.CreateInstanceFromVirtualPath, Depends.on.a<IFindPathsToViews>()));
+            register<IDisplayReports>(() => new WebFormDisplayEngine(Depends.on.a<IFindViewForModel>(), () => HttpContext.Current));
+            register<ICreateRequests>(() => new RequestFactory(Depends.on.a<IFindMappers>()));
+
             register<IProcessRequests>(() => new FrontController(Depends.on.a<IFindCommands>()));
 
             register<IFindCommands>(() => new CommandRegistry(
