@@ -101,12 +101,14 @@
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentRequest.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentRequestMapper.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartmentInputModel.cs" />
     <Compile Include="web\core\aspnet\IFindPathsToViews.cs" />
     <Compile Include="web\core\aspnet\WebFormFactory.cs" />
     <Compile Include="web\core\aspnet\WebFormViewRegistry.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\GetTheCurrentlyExecutingContext.cs" />
+    <Compile Include="web\core\IMapAn.cs" />
     <Compile Include="web\core\link_builder\IBuildLinks.cs" />
     <Compile Include="web\core\link_builder\IManageTokens.cs" />
     <Compile Include="web\core\link_builder\IProcessAToken.cs" />
@@ -117,8 +119,11 @@
     <Compile Include="web\core\link_builder\Token.cs" />
     <Compile Include="web\core\link_builder\TokenStore.cs" />
     <Compile Include="web\core\link_builder\UrlTokens.cs" />
+    <Compile Include="web\core\MapperRegistry.cs" />
+    <Compile Include="web\core\RequestFactory.cs" />
     <Compile Include="web\core\RequestInformation.cs" />
-    <Compile Include="web\core\TypeConverterRegistry.cs" />
+    <Compile Include="web\core\IFindMappers.cs" />
+    <Compile Include="web\core\ViewMainDeparmentsRequestMapper.cs" />
     <Compile Include="web\core\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation.cs" />
@@ -137,7 +142,6 @@
     <Compile Include="web\core\RequestMatch.cs" />
     <Compile Include="web\core\stubs\Stub.cs" />
     <Compile Include="web\core\stubs\StubMissingCommand.cs" />
-    <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
     <Compile Include="web\core\stubs\StubViewPathRegistry.cs" />
   </ItemGroup>

@@ -123,8 +123,10 @@
     <Compile Include="LinkBuilderSpecs.cs" />
     <Compile Include="LinkSpecs.cs" />
     <Compile Include="LinkVisitorSpecs.cs" />
+    <Compile Include="MapperRegistrySpecs.cs" />
     <Compile Include="MessageGeneratorSpecs.cs" />
     <Compile Include="RequestCommandSpecs.cs" />
+    <Compile Include="RequestFactorySpecs.cs" />
     <Compile Include="RequestInformationSpecs.cs" />
     <Compile Include="SimpleDependencyFactorySpecs.cs" />
     <Compile Include="SimpleTypeKeySpecs.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="utility\StubSpecs.cs" />
     <Compile Include="ViewRegistrySpecs.cs" />
     <Compile Include="QueryForSpecs.cs" />
+    <Compile Include="ViewTheDepartmentsInADepartmentRequestMapperSpecs.cs" />
     <Compile Include="WebHandlerSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
