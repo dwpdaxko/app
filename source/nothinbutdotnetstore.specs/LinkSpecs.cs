@@ -1,17 +1,14 @@
-﻿using System.Collections.Generic;
-using Machine.Specifications;
-using developwithpassion.specifications;
-using developwithpassion.specifications.extensions;
+﻿using Machine.Specifications;
 using developwithpassion.specifications.rhinomocks;
-using nothinbutdotnetstore.web.core.link_builder;
 using nothinbutdotnetstore.specs.utility;
+using nothinbutdotnetstore.web.core.link_builder;
 
 namespace nothinbutdotnetstore.specs
 {
     [Subject(typeof(Link))]
     public class LinkSpecs
     {
-        public abstract class concern:Observes
+        public abstract class concern : Observes
         {
         }
 
@@ -28,7 +25,6 @@ namespace nothinbutdotnetstore.specs
 
             It should_return_the_link_builder_created_using_the_factory = () =>
                 result.ShouldEqual(link_builder);
-
 
             static IBuildLinks result;
             static IBuildLinks link_builder;

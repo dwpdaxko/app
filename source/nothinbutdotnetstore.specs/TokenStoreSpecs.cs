@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Schema;
 using Machine.Specifications;
 using developwithpassion.specifications.rhinomocks;
-using developwithpassion.specifications.extensions;
 using nothinbutdotnetstore.web.core.link_builder;
 
 namespace nothinbutdotnetstore.specs
@@ -16,24 +16,21 @@ namespace nothinbutdotnetstore.specs
         public class when_a_token_has_been_added : concern
         {
             Establish context = () =>
-                                {
-                                    token = fake.an<Token>();
-                                };
+            {
+                tokens = new Dictionary<string,Token>();
+                depends.on(tokens);
+            };
 
             Because b = () =>
-                        {
-                            sut.store_token_for("foo", 2);
-                        };
+            {
+                sut.store_token_for("foo", 2);
+            };
 
-            It should_return_the_token_during_enumeration = () =>
-                                                            {
-                                                                sut.Where(token => token.key == "foo" && token.value == "2").Count().ShouldEqual(1);
-
-                                                            };
+            It should_add_the_token_to_the_underlying_backing_store = () =>
+                tokens["foo"].value.ShouldEqual(2);
 
             static Token token;
+            static IDictionary<string, Token> tokens;
         }
-
-
     }
 }

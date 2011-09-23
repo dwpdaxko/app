@@ -45,6 +45,7 @@ namespace nothinbutdotnetstore.tasks
                 Depends.on.a<IProcessOneRequest>()));
 
             register<IEnumerable<IProcessOneRequest>>(() => Stub.with<StubSetOfCommands>());
+            register<IProcessOneRequest>(() => Stub.with<StubMissingCommand>());
 
             register<IMapAnInputModelOf<ViewMainDepartmentsRequest>>(() => new StubInputModelMapper<ViewMainDepartmentsRequest>());
             register<IMapAnInputModelOf<ViewTheDepartmentsOfADepartmentRequest>>(() => new StubInputModelMapper<ViewTheDepartmentsOfADepartmentRequest>());

@@ -3,6 +3,6 @@
     public interface Token
     {
         string key { get; set; }
-        string value { get; set; }
+        object value { get; set; }
     }
 }

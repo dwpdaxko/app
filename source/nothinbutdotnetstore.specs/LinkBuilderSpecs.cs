@@ -112,7 +112,7 @@ namespace nothinbutdotnetstore.specs
         public class FakeToken:Token
         {
             public string key { get; set; }
-            public string value { get; set; }
+            public object value { get; set; }
         }
         public class FakeVisitor : IProcessAToken
         {

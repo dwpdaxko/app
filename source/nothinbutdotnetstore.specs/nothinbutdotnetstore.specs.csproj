@@ -51,13 +51,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="developwithpassion.specifications, Version=0.4.24.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="developwithpassion.specifications, Version=0.4.24.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\developwithpassion.specifications.rhinomocks.0.4.24.2\lib\developwithpassion.specifications.dll</HintPath>
+      <HintPath>..\..\packages\developwithpassion.specifications.rhinomocks.0.4.24.3\lib\developwithpassion.specifications.dll</HintPath>
     </Reference>
-    <Reference Include="developwithpassion.specifications.rhinomocks, Version=0.4.24.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="developwithpassion.specifications.rhinomocks, Version=0.4.24.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\developwithpassion.specifications.rhinomocks.0.4.24.2\lib\developwithpassion.specifications.rhinomocks.dll</HintPath>
+      <HintPath>..\..\packages\developwithpassion.specifications.rhinomocks.0.4.24.3\lib\developwithpassion.specifications.rhinomocks.dll</HintPath>
     </Reference>
     <Reference Include="Machine.Fakes, Version=0.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
