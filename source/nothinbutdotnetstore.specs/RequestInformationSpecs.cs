@@ -2,7 +2,8 @@
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
-using nothinbutdotnetstore.web.application.catalogbrowsing;
+using nothinbutdotnetstore.utility;
+using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.specs
@@ -48,30 +49,19 @@ namespace nothinbutdotnetstore.specs
             {
                 Establish c = () =>
                 {
-                    collection = new NameValueCollection() {{PayloadTokens.routing.request_type.key, "FakeInputModel"}};
+                    //resolver = fake.an<IFetchDependencies>();
+                    //resolver.setup(x => x.a<ICreateSimpleTokens>()).Return(token_factory);
+                    //Depends.container_resolver = () => resolver;
+                    collection = new NameValueCollection() { { "request_type", "FakeInputModel" } };
                     depends.on(collection);
                 };
 
                 It should_return_true = () =>
                     sut.was_made_for<FakeInputModel>().ShouldBeTrue();
 
-                static string the_url;
                 static NameValueCollection collection;
-            }
-
-            public class and_there_is_not_a_request_type_token_that_matches_the_name_of_the_input_model
-            {
-                Establish c = () =>
-                {
-                    collection = new NameValueCollection() { { PayloadTokens.routing.request_type.key, "Blah" } };
-                    depends.on(collection);
-                };
-
-                It should_return_false = () =>
-                    sut.was_made_for<FakeInputModel>().ShouldBeFalse();
-
-                static string the_url;
-                static NameValueCollection collection;
+                static ICreateSimpleTokens token_factory;
+                static IFetchDependencies resolver;
             }
         }
 
