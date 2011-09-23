@@ -31,9 +31,7 @@ namespace nothinbutdotnetstore.specs
                         };
 
             It should_return_a_ = () =>
-                                  {
-                                      result.ShouldEqual("/CommandTypeName.daxko");
-                                  };
+                result.ShouldEqual("/run.daxko?" + UrlTokens.request_type + "=CommandTypeName");
 
             static Token token;
             static string result;
@@ -60,7 +58,7 @@ namespace nothinbutdotnetstore.specs
 
             It should_return_a_ = () =>
             {
-                result.ShouldEqual("/CommandTypeName.daxko?id=foo&bar=baz");
+                result.ShouldEqual("/run.daxko?" + UrlTokens.request_type + "=CommandTypeName&id=foo&bar=baz");
             };
 
             static Token token;
