@@ -121,6 +121,7 @@
     <Compile Include="EnumerableExtensionsSpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
     <Compile Include="LinkBuilderSpecs.cs" />
+    <Compile Include="LinkBuildFactorySpecs.cs" />
     <Compile Include="LinkSpecs.cs" />
     <Compile Include="LinkVisitorSpecs.cs" />
     <Compile Include="MapperRegistrySpecs.cs" />
