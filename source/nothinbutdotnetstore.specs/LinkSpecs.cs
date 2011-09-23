@@ -25,7 +25,7 @@ namespace nothinbutdotnetstore.specs
                     return link_builder;
                 };
 
-                pipeline.prepare_container_returned(fake,factory);
+                pipeline.prepare_container_resolved(fake, factory);
             };
 
             Because b = () =>
