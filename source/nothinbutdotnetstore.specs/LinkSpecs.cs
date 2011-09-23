@@ -20,12 +20,7 @@ namespace nothinbutdotnetstore.specs
             Establish c = () =>
             {
                 link_builder = fake.an<IBuildLinks>();
-                LinkBuilderFactory factory = x =>
-                {
-                    return link_builder;
-                };
-
-                pipeline.prepare_container_resolved(fake, factory);
+                pipeline.prepare_container_resolved(fake, link_builder);
             };
 
             Because b = () =>

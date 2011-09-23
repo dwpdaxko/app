@@ -1,12 +1,29 @@
 ﻿using developwithpassion.specifications.core;
+using developwithpassion.specifications.extensions;
+using nothinbutdotnetstore.utility;
+using nothinbutdotnetstore.utility.containers;
 
 namespace nothinbutdotnetstore.specs.utility
 {
     public static class SpecExtensions
     {
-        public static Dependency prepare_container_resolved<Dependency>(this IConfigureSetupPairs spec, ICreateFakes fakes,Dependency dependency)
+        static IFetchDependencies container;
+
+        public static void prepare_container_resolved<Dependency>(this IConfigureSetupPairs spec, ICreateFakes fakes,Dependency dependency)
         {
-            return default(Dependency);
+
+
+            spec.add_setup_teardown_pair(() =>
+                {
+                    container = fakes.an<IFetchDependencies>();
+                    container.setup(x => x.a<Dependency>()).Return(dependency);
+
+                    ContainerResolver resolver = () => container;
+                    Depends.container_resolver = resolver;
+                }, () =>
+                    {
+
+                    });
         } 
     }
 }

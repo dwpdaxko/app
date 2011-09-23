@@ -1,4 +1,5 @@
 using System;
+using nothinbutdotnetstore.utility.containers;
 
 namespace nothinbutdotnetstore.web.core.link_builder
 {
@@ -7,7 +8,7 @@ namespace nothinbutdotnetstore.web.core.link_builder
 
         public static IBuildLinks to_run<T>()
         {
-            return builder_factory(typeof(T));
+            return Depends.on.a<IBuildLinks>();
         }
     }
 }
