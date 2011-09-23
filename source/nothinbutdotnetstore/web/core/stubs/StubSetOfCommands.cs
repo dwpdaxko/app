@@ -14,16 +14,9 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         public IEnumerator<IProcessOneRequest> GetEnumerator()
         {
-            yield return
-                new RequestCommand(x => true,
-                                   Depends.on.a<QueryFor<IEnumerable<Department>, StubGetTheMainDepartments>>());
-            yield return
-                new RequestCommand(x => true,
-                                   Depends.on.a<QueryFor<IEnumerable<Department>, StubGetTheDepartmentsInADepartment>>())
-                ;
-            yield return
-                new RequestCommand(x => true,
-                                   Depends.on.a<QueryFor<IEnumerable<Product>, StubGetTheProductsInADepartment>>());
+            yield return new RequestCommand(x => x.was_made_for<ViewMainDepartmentsRequest>(), Depends.on.a<QueryFor<IEnumerable<Department>, StubGetTheMainDepartments>>());
+            yield return new RequestCommand(x => x.was_made_for<ViewTheDepartmentsOfADepartmentRequest>(), Depends.on.a<QueryFor<IEnumerable<Department>, StubGetTheDepartmentsInADepartment>>());
+            yield return new RequestCommand(x => x.was_made_for<ViewTheProductsInADepartmentRequest>(), Depends.on.a<QueryFor<IEnumerable<Product>, StubGetTheProductsInADepartment>>());
         }
     }
 }
