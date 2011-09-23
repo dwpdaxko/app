@@ -2,13 +2,13 @@
 
 namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
-
-    public class QueryFor<ReportModel> : IOrchestrateAnApplicationFeature
+    public class QueryFor<ReportModel, QueryObject> : IOrchestrateAnApplicationFeature
+        where QueryObject : IFetchA<ReportModel>
     {
-        IFetchA<ReportModel> query;
         IDisplayReports display_engine;
+        IFetchA<ReportModel> query;
 
-        public QueryFor(IFetchA<ReportModel> query, IDisplayReports display_engine)
+        public QueryFor(QueryObject query, IDisplayReports display_engine)
         {
             this.query = query;
             this.display_engine = display_engine;

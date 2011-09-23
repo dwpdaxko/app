@@ -5,7 +5,7 @@ namespace nothinbutdotnetstore.utility
 {
     public class SimpleToken<ValueType>
     {
-        IFindMappers mapper_registry;
+        public IFindMappers mapper_registry;
         public string key { get; private set; }
 
 

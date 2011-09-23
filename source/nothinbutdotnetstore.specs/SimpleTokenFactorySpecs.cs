@@ -28,7 +28,10 @@ public class SimpleTokenFactorySpecs
             token = sut.named<int>("something");
 
         It should_create_the_token_using_the_mapper_registry = () =>
-            token.map_from(collection).ShouldEqual(the_number);
+        {
+            token.mapper_registry.ShouldEqual(mapper_registry);
+            token.key.ShouldEqual("something");
+        };
 
         static SimpleToken<int> token;
         static IFindMappers mapper_registry;
