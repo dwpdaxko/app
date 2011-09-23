@@ -20,7 +20,7 @@ public class SimpleTokenFactorySpecs
             collection = new NameValueCollection() {{"something", "100"}};
             mapper = fake.an<IMapDetails<NameValueCollection, int>>();
             mapper_registry = depends.on<IFindMappers>();
-            mapper_registry.setup(x => x.get_mapper_that_can_map<string, int>()).Return(mapper);
+            mapper_registry.setup(x => x.get_mapper_that_can_map<NameValueCollection, int>()).Return(mapper);
             mapper.setup(x => x.map_from(collection)).Return(the_number);
         };
 
