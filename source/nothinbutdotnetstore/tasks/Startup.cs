@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.utility.containers.simple;
+using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.tasks
 {
@@ -26,6 +27,16 @@ namespace nothinbutdotnetstore.tasks
 
         static void populate_factories()
         {
+            factories.Add(new SimpleTypeKey((typeof(IFindCommands))), new SimpleDependencyFactory(() => new StubCommandRegistry()));
+            factories.Add(new SimpleTypeKey(typeof(IProcessRequests)), new SimpleDependencyFactory(() => new FrontController(Depends.on.a<IFindCommands>())));
+        }
+    }
+
+    internal class StubCommandRegistry : IFindCommands
+    {
+        public IProcessOneRequest get_the_command_that_can_process(IContainRequestInformation request)
+        {
+            throw new NotImplementedException();
         }
     }
 }
