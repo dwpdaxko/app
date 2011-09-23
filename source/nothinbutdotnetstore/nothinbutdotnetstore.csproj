@@ -98,6 +98,7 @@
     <Compile Include="utility\New.cs" />
     <Compile Include="utility\SimpleToken.cs" />
     <Compile Include="utility\ICreateSimpleTokens.cs" />
+    <Compile Include="utility\SimpleTokenFactory.cs" />
     <Compile Include="web\application\catalogbrowsing\PayloadTokens.cs" />
     <Compile Include="web\application\catalogbrowsing\QueryFor.cs" />
     <Compile Include="web\application\catalogbrowsing\Department.cs" />

@@ -130,6 +130,7 @@
     <Compile Include="RequestFactorySpecs.cs" />
     <Compile Include="RequestInformationSpecs.cs" />
     <Compile Include="SimpleDependencyFactorySpecs.cs" />
+    <Compile Include="SimpleTokenFactorySpecs.cs" />
     <Compile Include="SimpleTokenSpecs.cs" />
     <Compile Include="SimpleTypeKeySpecs.cs" />
     <Compile Include="StartupSpecs.cs" />
