@@ -21,6 +21,12 @@ namespace nothinbutdotnetstore.specs
 				                                                	{"id", "123"}
 				                                                });
 
+				var simple_integer_converter = fake.an<ISimpleTypeConverter>();
+				simple_integer_converter.setup(x => x.convert_from("123")).Return(123);
+
+				var type_converters = depends.on<TypeConverterRegistry>();
+				type_converters.setup(x => x.get_type_converter_for(typeof(int))).Return(simple_integer_converter);
+
 			};
 
 			Because b = () =>
