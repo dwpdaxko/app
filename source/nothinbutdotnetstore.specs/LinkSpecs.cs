@@ -2,6 +2,7 @@
 using developwithpassion.specifications.rhinomocks;
 using nothinbutdotnetstore.specs.utility;
 using nothinbutdotnetstore.web.core.link_builder;
+using developwithpassion.specifications.extensions;
 
 namespace nothinbutdotnetstore.specs
 {
@@ -17,7 +18,9 @@ namespace nothinbutdotnetstore.specs
             Establish c = () =>
             {
                 link_builder = fake.an<IBuildLinks>();
-                factory = fake.an<LinkBuilderFactory>();
+                factory = fake.an<ICreateLinkBuilders>();
+
+                factory.setup(x => x.build_link(typeof(Link))).Return(link_builder);
                 pipeline.prepare_container_resolved(fake, factory);
             };
 
@@ -29,7 +32,7 @@ namespace nothinbutdotnetstore.specs
 
             static IBuildLinks result;
             static IBuildLinks link_builder;
-            static LinkBuilderFactory factory;
+            static ICreateLinkBuilders factory;
         }
     }
 }

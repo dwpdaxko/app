@@ -119,7 +119,7 @@
     <Compile Include="web\core\link_builder\IProcessAToken.cs" />
     <Compile Include="web\core\link_builder\Link.cs" />
     <Compile Include="web\core\link_builder\LinkBuilder.cs" />
-    <Compile Include="web\core\link_builder\LinkBuilderFactory.cs" />
+    <Compile Include="web\core\link_builder\ICreateLinkBuilders.cs" />
     <Compile Include="web\core\link_builder\LinkVisitor.cs" />
     <Compile Include="web\core\link_builder\Token.cs" />
     <Compile Include="web\core\link_builder\TokenStore.cs" />
