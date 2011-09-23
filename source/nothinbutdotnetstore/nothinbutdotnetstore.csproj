@@ -129,6 +129,9 @@
     <Compile Include="web\core\RequestFactory.cs" />
     <Compile Include="web\core\RequestInformation.cs" />
     <Compile Include="web\core\IFindMappers.cs" />
+    <Compile Include="web\core\stubs\StubGetTheDepartmentsInADepartment.cs" />
+    <Compile Include="web\core\stubs\StubGetTheMainDepartments.cs" />
+    <Compile Include="web\core\stubs\StubGetTheProductsInADepartment.cs" />
     <Compile Include="web\core\ViewMainDeparmentsRequestMapper.cs" />
     <Compile Include="web\core\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\FrontController.cs" />
