@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
-using nothinbutdotnetstore.web.application.catalogbrowsing;
+using nothinbutdotnetstore.web.core.link_builder;
 
 namespace nothinbutdotnetstore.web.core
 {
@@ -24,7 +24,7 @@ namespace nothinbutdotnetstore.web.core
 
         public bool was_made_for<InputModel>()
         {
-            return PayloadTokens.routing.request_type.map_from(payload).Equals(typeof(InputModel).Name, StringComparison.OrdinalIgnoreCase);
+            return payload[UrlTokens.request_type].Equals(typeof(InputModel).Name, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

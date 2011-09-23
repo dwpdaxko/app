@@ -5,6 +5,7 @@ using Machine.Specifications;
 using nothinbutdotnetstore.utility;
 using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.web.core;
+using nothinbutdotnetstore.web.core.link_builder;
 
 namespace nothinbutdotnetstore.specs
 {
@@ -49,15 +50,28 @@ namespace nothinbutdotnetstore.specs
             {
                 Establish c = () =>
                 {
-                    //resolver = fake.an<IFetchDependencies>();
-                    //resolver.setup(x => x.a<ICreateSimpleTokens>()).Return(token_factory);
-                    //Depends.container_resolver = () => resolver;
-                    collection = new NameValueCollection() { { "request_type", "FakeInputModel" } };
+                    collection = new NameValueCollection() {{UrlTokens.request_type, "FakeInputModel"}};
                     depends.on(collection);
                 };
 
                 It should_return_true = () =>
                     sut.was_made_for<FakeInputModel>().ShouldBeTrue();
+
+                static NameValueCollection collection;
+                static ICreateSimpleTokens token_factory;
+                static IFetchDependencies resolver;
+            }
+
+            public class and_there_is_not_a_request_type_token_that_matches_the_name_of_the_input_model
+            {
+                Establish c = () =>
+                {
+                    collection = new NameValueCollection() { { UrlTokens.request_type, "blah" } };
+                    depends.on(collection);
+                };
+
+                It should_return_false = () =>
+                    sut.was_made_for<FakeInputModel>().ShouldBeFalse();
 
                 static NameValueCollection collection;
                 static ICreateSimpleTokens token_factory;
