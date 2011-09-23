@@ -46,7 +46,11 @@ namespace nothinbutdotnetstore.specs
                     () =>
                     {
                         the_missing_type_factory = fake.an<ICreateADependency>();
-                        depends.on(the_missing_type_factory);
+                        depends.on<CreateMissingDependencyFactory>(x =>
+                        {
+                            x.ShouldEqual(typeof(FakeDependency));
+                            return the_missing_type_factory;
+                        });
                         depends.on<IDictionary<IRepresentAType, ICreateADependency>>(
                             new Dictionary<IRepresentAType, ICreateADependency>());
                     };

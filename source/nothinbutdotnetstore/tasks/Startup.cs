@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.utility.containers.simple;
-using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.tasks
 {
@@ -12,12 +11,13 @@ namespace nothinbutdotnetstore.tasks
 
         public static void run()
         {
-            factories  = new Dictionary<IRepresentAType, ICreateADependency>();
+            factories = new Dictionary<IRepresentAType, ICreateADependency>();
 
-            var container = new Container(new DependencyFactoryRegistry(factories, new SimpleDependencyFactory(delegate
-            {
-                throw new NotImplementedException("Failed to create an instance");
-            })));
+            var container =
+                new Container(new DependencyFactoryRegistry(factories, type => new SimpleDependencyFactory(delegate
+                {
+                    throw new NotImplementedException(string.Format("Failed to create an instance of {0}", type.Name));
+                })));
 
             Depends.container_resolver = () => container;
 
@@ -26,7 +26,6 @@ namespace nothinbutdotnetstore.tasks
 
         static void populate_factories()
         {
-            factories.Add(null,new SimpleDependencyFactory(() => new FrontController()));
         }
     }
 }
