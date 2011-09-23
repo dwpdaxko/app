@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.utility.containers.simple;
 using nothinbutdotnetstore.web.core;
+using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.tasks
 {
@@ -27,7 +28,7 @@ namespace nothinbutdotnetstore.tasks
 
         static void populate_factories()
         {
-            factories.Add(new SimpleTypeKey((typeof(IFindCommands))), new SimpleDependencyFactory(() => new StubCommandRegistry()));
+            factories.Add(new SimpleTypeKey((typeof(IFindCommands))), new SimpleDependencyFactory(() => Stub.with<StubCommandRegistry>()));
             factories.Add(new SimpleTypeKey(typeof(IProcessRequests)), new SimpleDependencyFactory(() => new FrontController(Depends.on.a<IFindCommands>())));
         }
     }
