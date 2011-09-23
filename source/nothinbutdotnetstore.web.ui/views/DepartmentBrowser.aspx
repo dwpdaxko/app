@@ -13,7 +13,9 @@ CodeFile="DepartmentBrowser.aspx.cs"
                 %>
               <%-- for each department --%>
               <tr class="ListItem">
-               <td><a href="<%= Link.to_run<Department>() %>">
+               <td><a href="<%= Link.to_run<ViewTheDepartmentsOfADepartmentRequest>()
+									.conditionally<ViewTheProductsInADepartmentInputModel>(department.has_products)
+									.include(department, x => x.has_products) %>">
                 <%= department.name %></a></td>
            	  </tr>        
               <% } %>
