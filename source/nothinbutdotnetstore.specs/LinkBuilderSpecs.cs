@@ -9,9 +9,8 @@ namespace nothinbutdotnetstore.specs
     [Subject(typeof(LinkBuilder))]
     public class LinkBuilderSpecs
     {
-        class FakeRequest
-        {
-        }
+        class FakeRequest {}
+        class AnotherFakeRequest {}
 
         public abstract class concern : Observes<IBuildLinks, LinkBuilder>
         {
@@ -55,9 +54,65 @@ namespace nothinbutdotnetstore.specs
             static string the_string_built_by_the_visitor;
         }
 
+        public class when_conditionally_using_a_request_model: concern
+        {
+            Establish c = () =>
+            {
+                token_store = depends.on<IManageTokens>();
+            };
+
+
+            public class and_the_condition_is_met:when_conditionally_using_a_request_model
+            {
+
+                Because b = () =>
+                                sut.conditionally<AnotherFakeRequest>(true);
+
+                It should_use_the_conditional_request = () =>
+                      token_store.received(x => x.store_token_for(UrlTokens.request_type, typeof(AnotherFakeRequest)));
+            }
+
+            public class and_the_condition_is_not_met : when_conditionally_using_a_request_model
+            {
+                Because b = () =>
+                            sut.conditionally<AnotherFakeRequest>(false);
+
+                It should_use_the_conditional_request = () =>
+                            token_store.never_received(x => x.store_token_for(UrlTokens.request_type, typeof (AnotherFakeRequest)));
+            }
+
+            static IManageTokens token_store;
+        }
+
+        public class when_including_a_parameter : concern
+        {
+            public class FakeModel
+            {
+                public int property { get; set; }
+            }
+
+            Establish c = () =>
+                          {
+                              token_store = depends.on<IManageTokens>();
+                              parameter_value = 1;
+                              model = new FakeModel() {property = parameter_value};
+                          };
+
+            Because b = () => 
+                sut.include(model, m => m.property);
+
+            It should_include_a_parameter_token = () => 
+                token_store.received(x => x.store_token_for("property", parameter_value));
+
+            static IManageTokens token_store;
+            static FakeModel model;
+            static int parameter_value;
+        }
+
         public class FakeToken:Token
         {
-            
+            public string key { get; set; }
+            public string value { get; set; }
         }
         public class FakeVisitor : IProcessAToken
         {

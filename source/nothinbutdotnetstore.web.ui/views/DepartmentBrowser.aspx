@@ -13,7 +13,7 @@ CodeFile="DepartmentBrowser.aspx.cs"
                 %>
               <%-- for each department --%>
               <tr class="ListItem">
-               <td><a href="#">
+               <td><a href="<%= Link.to_run<Department>() %>">
                 <%= department.name %></a></td>
            	  </tr>        
               <% } %>
