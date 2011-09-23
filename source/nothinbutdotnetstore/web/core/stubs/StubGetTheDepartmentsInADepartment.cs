@@ -8,7 +8,7 @@ namespace nothinbutdotnetstore.web.core.stubs
     {
         public IEnumerable<Department> run_using(IContainRequestInformation request)
         {
-            return Enumerable.Range(1, 100).Select(x => new Department {name = x.ToString("Sub Department 0")});
+            return Enumerable.Range(1, 100).Select(x => new Department {name = x.ToString("Sub Department 0"),has_products = x %2 ==0});
         }
     }
 }
