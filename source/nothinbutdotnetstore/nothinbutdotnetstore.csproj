@@ -117,6 +117,7 @@
     <Compile Include="web\core\link_builder\Token.cs" />
     <Compile Include="web\core\link_builder\TokenStore.cs" />
     <Compile Include="web\core\link_builder\UrlTokens.cs" />
+    <Compile Include="web\core\RequestInformation.cs" />
     <Compile Include="web\core\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestInformation.cs" />
