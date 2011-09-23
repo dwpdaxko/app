@@ -3,6 +3,7 @@ using developwithpassion.specifications.rhinomocks;
 using nothinbutdotnetstore.utility;
 using nothinbutdotnetstore.utility.containers;
 using developwithpassion.specifications.extensions;
+using nothinbutdotnetstore.specs.utility;
 
 namespace nothinbutdotnetstore.specs
 {
@@ -23,6 +24,8 @@ namespace nothinbutdotnetstore.specs
                 token_factory.setup(x => x.named<int>(key)).Return(the_token);
 
                 //TODO - figure out how to encapsulate as a reusable test utility
+//                spec.prepare_container_resolved(token_factory);
+
                 container = fake.an<IFetchDependencies>();
                 container.setup(x => x.a<ICreateSimpleTokens>()).Return(token_factory);
 

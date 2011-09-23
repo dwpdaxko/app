@@ -135,6 +135,7 @@
     <Compile Include="StartupSpecs.cs" />
     <Compile Include="TokenStoreSpecs.cs" />
     <Compile Include="utility\ObjectFactory.cs" />
+    <Compile Include="utility\SpecExtensions.cs" />
     <Compile Include="utility\StubSpecs.cs" />
     <Compile Include="ViewRegistrySpecs.cs" />
     <Compile Include="QueryForSpecs.cs" />
