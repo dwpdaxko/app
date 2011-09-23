@@ -25,9 +25,6 @@ namespace nothinbutdotnetstore.specs
 
                 request = fake.an<IContainRequestInformation>();
 
-
-
-                query.setup(x => x.run_using(request)).Return(products);
             };
 
             Because b = () => sut.process(request);
