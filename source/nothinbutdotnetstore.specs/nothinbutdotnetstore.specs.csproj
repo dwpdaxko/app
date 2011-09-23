@@ -140,7 +140,6 @@
     <Compile Include="utility\StubSpecs.cs" />
     <Compile Include="ViewRegistrySpecs.cs" />
     <Compile Include="QueryForSpecs.cs" />
-    <Compile Include="ViewTheDepartmentsInADepartmentRequestMapperSpecs.cs" />
     <Compile Include="WebHandlerSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

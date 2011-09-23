@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.utility.containers.simple;
+using nothinbutdotnetstore.web.application.catalogbrowsing;
+using nothinbutdotnetstore.web.application.catalogbrowsing.stubs;
 using nothinbutdotnetstore.web.core;
 using nothinbutdotnetstore.web.core.stubs;
 
@@ -35,12 +37,16 @@ namespace nothinbutdotnetstore.tasks
                 Depends.on.a<IProcessOneRequest>()));
 
             register<IEnumerable<IProcessOneRequest>>(() => Stub.with<StubSetOfCommands>());
+
+            register<IMapAnInputModelOf<ViewMainDepartmentsRequest>>(() => new StubInputModelMapper<ViewMainDepartmentsRequest>());
+            register<IMapAnInputModelOf<ViewTheDepartmentsOfADepartmentRequest>>(() => new StubInputModelMapper<ViewTheDepartmentsOfADepartmentRequest>());
+            register<IMapAnInputModelOf<ViewTheProductsInADepartmentRequest>>(() => new StubInputModelMapper<ViewTheProductsInADepartmentRequest>());
         }
 
         static void register<Contract>(Func<object> implementation)
         {
             factories.Add(new SimpleTypeKey(typeof(Contract)), new
-                                                                   SimpleDependencyFactory(implementation))
+                                                                   SimpleDependencyFactory(implementation));
         }
     }
 
