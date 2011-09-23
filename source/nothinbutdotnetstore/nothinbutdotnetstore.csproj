@@ -105,15 +105,16 @@
     <Compile Include="web\application\catalogbrowsing\IFetchA.cs" />
     <Compile Include="web\application\catalogbrowsing\IRetrieveStoreInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
+    <Compile Include="web\application\catalogbrowsing\stubs\StubInputModelMapper.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentRequest.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentRequestMapper.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartmentInputModel.cs" />
     <Compile Include="web\core\aspnet\IFindPathsToViews.cs" />
     <Compile Include="web\core\aspnet\WebFormFactory.cs" />
     <Compile Include="web\core\aspnet\WebFormViewRegistry.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\GetTheCurrentlyExecutingContext.cs" />
-    <Compile Include="web\core\IMapAn.cs" />
+    <Compile Include="web\core\IMapAnInputModelOf.cs" />
     <Compile Include="web\core\link_builder\IBuildLinks.cs" />
     <Compile Include="web\core\link_builder\IManageTokens.cs" />
     <Compile Include="web\core\link_builder\IProcessAToken.cs" />
@@ -153,9 +154,7 @@
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
     <Compile Include="web\core\stubs\StubViewPathRegistry.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="web\application\catalogbrowsing\stubs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

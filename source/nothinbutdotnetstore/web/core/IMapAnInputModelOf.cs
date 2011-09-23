@@ -2,7 +2,7 @@
 
 namespace nothinbutdotnetstore.web.core
 {
-    public interface IMapAn<InputModel> : IMapDetails<NameValueCollection,InputModel>
+    public interface IMapAnInputModelOf<InputModel> : IMapDetails<NameValueCollection,InputModel>
     {
          
     }

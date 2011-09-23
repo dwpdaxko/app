@@ -3,14 +3,15 @@ using System.Collections.Specialized;
 using Machine.Specifications;
 using developwithpassion.specifications.rhinomocks;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
+using nothinbutdotnetstore.web.application.catalogbrowsing.stubs;
 using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.specs
 {
     public class ViewTheDepartmentsInADepartmentRequestMapperSpecs
     {
-        public abstract class concern : Observes<IMapAn<ViewTheDepartmentsOfADepartmentRequest>,
-                                            ViewTheDepartmentsOfADepartmentRequestMapper>
+        public abstract class concern : Observes<IMapAnInputModelOf<ViewTheDepartmentsOfADepartmentRequest>,
+                                            StubViewTheDepartmentsOfADepartmentRequestMapper>
         {
         }
 

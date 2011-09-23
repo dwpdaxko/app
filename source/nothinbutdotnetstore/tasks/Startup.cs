@@ -28,8 +28,19 @@ namespace nothinbutdotnetstore.tasks
 
         static void populate_factories()
         {
-            factories.Add(new SimpleTypeKey((typeof(IFindCommands))), new SimpleDependencyFactory(() => Stub.with<StubCommandRegistry>()));
-            factories.Add(new SimpleTypeKey(typeof(IProcessRequests)), new SimpleDependencyFactory(() => new FrontController(Depends.on.a<IFindCommands>())));
+            register<IProcessRequests>(() => new FrontController(Depends.on.a<IFindCommands>()));
+
+            register<IFindCommands>(() => new CommandRegistry(
+                Depends.on.a<IEnumerable<IProcessOneRequest>>(),
+                Depends.on.a<IProcessOneRequest>()));
+
+            register<IEnumerable<IProcessOneRequest>>(() => Stub.with<StubSetOfCommands>());
+        }
+
+        static void register<Contract>(Func<object> implementation)
+        {
+            factories.Add(new SimpleTypeKey(typeof(Contract)), new
+                                                                   SimpleDependencyFactory(implementation))
         }
     }
 

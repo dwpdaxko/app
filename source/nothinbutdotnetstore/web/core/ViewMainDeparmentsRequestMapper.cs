@@ -2,7 +2,7 @@
 
 namespace nothinbutdotnetstore.web.core
 {
-    public class ViewMainDeparmentsRequestMapper : IMapAn<ViewMainDepartmentsRequest>
+    public class ViewMainDeparmentsRequestMapper : IMapAnInputModelOf<ViewMainDepartmentsRequest>
     {
         public ViewMainDepartmentsRequest map_from(NameValueCollection item)
         {
