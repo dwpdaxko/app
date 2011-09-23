@@ -6,7 +6,7 @@ namespace nothinbutdotnetstore.web.core.link_builder
     {
         public static IBuildLinks to_run<T>()
         {
-            return Depends.on.a<LinkBuilderFactory>()(typeof(T));
+            return Depends.on.a<LinkBuilderFactory>().build_link(typeof(T));
         }
     }
 }

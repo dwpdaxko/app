@@ -2,5 +2,8 @@
 
 namespace nothinbutdotnetstore.web.core.link_builder
 {
-    public delegate IBuildLinks LinkBuilderFactory(Type initial_request_type);
+    public interface LinkBuilderFactory
+    {
+        IBuildLinks build_link(Type request_type);
+    }
 }

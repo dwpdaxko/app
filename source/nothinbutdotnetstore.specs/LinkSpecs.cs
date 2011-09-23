@@ -17,7 +17,7 @@ namespace nothinbutdotnetstore.specs
             Establish c = () =>
             {
                 link_builder = fake.an<IBuildLinks>();
-                LinkBuilderFactory factory = x => link_builder;
+                factory = fake.an<LinkBuilderFactory>();
                 pipeline.prepare_container_resolved(fake, factory);
             };
 
@@ -29,6 +29,7 @@ namespace nothinbutdotnetstore.specs
 
             static IBuildLinks result;
             static IBuildLinks link_builder;
+            static LinkBuilderFactory factory;
         }
     }
 }
