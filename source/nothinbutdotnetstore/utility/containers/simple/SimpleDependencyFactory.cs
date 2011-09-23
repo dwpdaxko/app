@@ -1,10 +1,19 @@
-﻿namespace nothinbutdotnetstore.utility.containers.simple
+﻿using System;
+
+namespace nothinbutdotnetstore.utility.containers.simple
 {
     public class SimpleDependencyFactory : ICreateADependency
     {
-        public object create()
+    	private Func<object> factory_method;
+
+    	public SimpleDependencyFactory(Func<object> factoryMethod)
+    	{
+    		factory_method = factoryMethod;
+    	}
+
+    	public object create()
         {
-            throw new System.NotImplementedException();
+        	return factory_method();
         }
     }
 }
