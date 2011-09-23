@@ -1,6 +1,8 @@
 <%@ Register TagPrefix="NothinButDotNetStore" TagName="ShoppingCart" src="shoppingcartsidebar.ascx"  %>
 <%@ Register TagPrefix="NothinButDotNetStore" TagName="Footer" src="Footer.ascx" %>
 <%@ Master Language="C#" AutoEventWireup="true" %>
+<%@ Import Namespace="nothinbutdotnetstore.web.application.catalogbrowsing" %>
+<%@ Import Namespace="nothinbutdotnetstore.web.core.link_builder" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -55,7 +57,7 @@
                     <li>
                         <ul>
                             <li><a href="StoreDirectory.aspx">Store Directory</a></li>
-                            <li><a href="Whatever.daxko">Department Browser</a></li>
+                            <li><a href="<%= Link.to_run<ViewTheMainDepartmentsRequest>() %>">Department Browser</a></li>
                         </ul>
                     
                     </li>           

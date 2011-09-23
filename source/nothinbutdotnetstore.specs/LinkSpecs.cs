@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using Machine.Specifications;
+using developwithpassion.specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using nothinbutdotnetstore.web.core.link_builder;
+using nothinbutdotnetstore.specs.utility;
 
 namespace nothinbutdotnetstore.specs
 {
@@ -22,7 +24,8 @@ namespace nothinbutdotnetstore.specs
                 {
                     return link_builder;
                 };
-                spec.change(() => Link.builder_factory).to(factory);
+
+                pipeline.prepare_container_returned(fake,factory);
             };
 
             Because b = () =>
