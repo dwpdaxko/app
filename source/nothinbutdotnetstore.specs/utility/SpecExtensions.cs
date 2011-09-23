@@ -6,7 +6,7 @@ namespace nothinbutdotnetstore.specs.utility
     {
         public static Dependency prepare_container_resolved<Dependency>(this IConfigureSpecifications spec, Dependency dependency)
         {
-            
+            return default(Dependency);
         } 
     }
 }
