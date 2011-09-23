@@ -125,10 +125,12 @@
     <Compile Include="LinkVisitorSpecs.cs" />
     <Compile Include="MapperRegistrySpecs.cs" />
     <Compile Include="MessageGeneratorSpecs.cs" />
+    <Compile Include="NewSpecs.cs" />
     <Compile Include="RequestCommandSpecs.cs" />
     <Compile Include="RequestFactorySpecs.cs" />
     <Compile Include="RequestInformationSpecs.cs" />
     <Compile Include="SimpleDependencyFactorySpecs.cs" />
+    <Compile Include="SimpleTokenSpecs.cs" />
     <Compile Include="SimpleTypeKeySpecs.cs" />
     <Compile Include="StartupSpecs.cs" />
     <Compile Include="TokenStoreSpecs.cs" />

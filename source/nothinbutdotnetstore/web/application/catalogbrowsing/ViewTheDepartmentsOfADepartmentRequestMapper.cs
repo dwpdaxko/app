@@ -8,7 +8,12 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
     {
         public ViewTheDepartmentsOfADepartmentRequest map_from(NameValueCollection item)
         {
-            throw new NotImplementedException();
+            return new ViewTheDepartmentsOfADepartmentRequest
+            {
+                department_id = long.Parse(item[PayloadTokens.view_departments_in_department_request.department_id]),
+                introduced_into_store_on = DateTime.Parse(item[PayloadTokens.view_departments_in_department_request.introduced_into_store_on]),
+                number_of_items = int.Parse(item[PayloadTokens.view_departments_in_department_request.number_of_items])
+            };
         }
     }
 }

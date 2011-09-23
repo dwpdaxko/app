@@ -92,8 +92,13 @@
     <Compile Include="utility\containers\SimpleTypeKey.cs" />
     <Compile Include="utility\containers\simple\SimpleDependencyFactory.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
+    <Compile Include="utility\IBuildTokens.cs" />
     <Compile Include="utility\IProcessAn.cs" />
     <Compile Include="utility\IProcessAndReturnAValue.cs" />
+    <Compile Include="utility\New.cs" />
+    <Compile Include="utility\SimpleToken.cs" />
+    <Compile Include="utility\ICreateSimpleTokens.cs" />
+    <Compile Include="web\application\catalogbrowsing\PayloadTokens.cs" />
     <Compile Include="web\application\catalogbrowsing\QueryFor.cs" />
     <Compile Include="web\application\catalogbrowsing\Department.cs" />
     <Compile Include="web\application\catalogbrowsing\IFetchA.cs" />
