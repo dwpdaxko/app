@@ -2,7 +2,7 @@
 
 namespace nothinbutdotnetstore.utility.containers
 {
-    public class Depends
+    public static class Depends
     {
         public static ContainerResolver container_resolver = delegate
         {

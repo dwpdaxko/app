@@ -1,8 +1,15 @@
-﻿namespace nothinbutdotnetstore.web.core
+﻿using nothinbutdotnetstore.utility.containers;
+
+namespace nothinbutdotnetstore.web.core
 {
     public class FrontController :IProcessRequests
     {
     	IFindCommands command_registry;
+
+        public FrontController() : this(Depends.on.a<IFindCommands>())
+        {
+
+        }
 
         public FrontController(IFindCommands command_registry)
     	{
