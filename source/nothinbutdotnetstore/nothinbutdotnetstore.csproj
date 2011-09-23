@@ -105,7 +105,6 @@
     <Compile Include="web\application\catalogbrowsing\IFetchA.cs" />
     <Compile Include="web\application\catalogbrowsing\IRetrieveStoreInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
-    <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsOfADepartmentRequestMapper.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartmentInputModel.cs" />
@@ -129,6 +128,9 @@
     <Compile Include="web\core\RequestFactory.cs" />
     <Compile Include="web\core\RequestInformation.cs" />
     <Compile Include="web\core\IFindMappers.cs" />
+    <Compile Include="web\core\stubs\StubGetTheDepartmentsInADepartment.cs" />
+    <Compile Include="web\core\stubs\StubGetTheMainDepartments.cs" />
+    <Compile Include="web\core\stubs\StubGetTheProductsInADepartment.cs" />
     <Compile Include="web\core\ViewMainDeparmentsRequestMapper.cs" />
     <Compile Include="web\core\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\FrontController.cs" />
@@ -151,7 +153,9 @@
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
     <Compile Include="web\core\stubs\StubViewPathRegistry.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="web\application\catalogbrowsing\stubs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
