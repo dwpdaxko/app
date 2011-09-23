@@ -7,15 +7,13 @@ namespace nothinbutdotnetstore.specs.utility
 {
     public static class SpecExtensions
     {
-        static IFetchDependencies container;
-
         public static void prepare_container_resolved<Dependency>(this IConfigureSetupPairs spec, ICreateFakes fakes,Dependency dependency)
         {
 
 
             spec.add_setup_teardown_pair(() =>
                 {
-                    container = fakes.an<IFetchDependencies>();
+                    var container = fakes.an<IFetchDependencies>();
                     container.setup(x => x.a<Dependency>()).Return(dependency);
 
                     ContainerResolver resolver = () => container;
