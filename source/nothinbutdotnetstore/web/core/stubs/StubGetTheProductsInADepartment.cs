@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
-using nothinbutdotnetstore.web.application.catalogbrowsing.stubs;
 
 namespace nothinbutdotnetstore.web.core.stubs
 {
@@ -9,8 +9,7 @@ namespace nothinbutdotnetstore.web.core.stubs
         public IEnumerable<Product> run_using(IContainRequestInformation request)
         {
             return
-                Stub.with<StubDepartmentRepository>().get_products_for(
-                    request.map_a<ViewTheProductsInADepartmentInputModel>());
+                Enumerable.Range(1, 100).Select(x => new Product {name = x.ToString("Product 0")});
         }
     }
 }

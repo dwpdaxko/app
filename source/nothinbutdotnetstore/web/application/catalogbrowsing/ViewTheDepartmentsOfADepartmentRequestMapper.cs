@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using nothinbutdotnetstore.utility;
 using nothinbutdotnetstore.web.core;
 
@@ -9,15 +8,14 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
     {
         public ViewTheDepartmentsOfADepartmentRequest map_from(NameValueCollection item)
         {
-            var token_builder = New.token_builder().target<ViewTheDepartmentsOfADepartmentRequest>(item)
             return new ViewTheDepartmentsOfADepartmentRequest
             {
-
-    department_id = token_builder.item(x => x.department_id),
-                introduced_into_store_on =token_builder.item(x => x.intro).
-                number_of_items = token_builder.item(x => x.number_of_items)
-            };
+                department_id = PayloadTokens.view_departments_in_department_request.department_id.map_from(item),
+                introduced_into_store_on =
+                    PayloadTokens.view_departments_in_department_request.introduced_into_store_on.map_from(item),
+                number_of_items = PayloadTokens.view_departments_in_department_request.number_of_items.map_from(item)
             };
         }
+
     }
 }

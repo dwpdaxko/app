@@ -2,11 +2,8 @@
 using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
-using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
-using nothinbutdotnetstore.web.application.catalogbrowsing.stubs;
 using nothinbutdotnetstore.web.core;
-using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.specs
 {
@@ -47,7 +44,7 @@ namespace nothinbutdotnetstore.specs
 
     public class SomeQuery :IFetchA<IEnumerable<Product>>
     {
-        IList<Product> products;
+        IEnumerable<Product> products;
 
         public SomeQuery(IEnumerable<Product> products)
         {
