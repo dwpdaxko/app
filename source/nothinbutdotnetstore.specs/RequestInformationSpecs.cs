@@ -21,7 +21,7 @@ namespace nothinbutdotnetstore.specs
 				                                                	{"id", "123"}
 				                                                });
 
-				var simple_integer_converter = fake.an<ISimpleTypeConverter>();
+				simple_integer_converter = fake.an<ISimpleTypeConverter>();
 				simple_integer_converter.setup(x => x.convert_from("123")).Return(123);
 
 				var type_converters = depends.on<TypeConverterRegistry>();
@@ -32,18 +32,21 @@ namespace nothinbutdotnetstore.specs
 			Because b = () =>
 				result = sut.map_a<FakeInputModel>();
 
-			private It should_return_an_instance_of_specified_type_populated_with_data_from_request = () =>
-			{
+			private It should_return_an_instance_of_specified_type_populated_with_data_from_request = () => 
 				result.id.ShouldEqual(123);
-			};
+
+			private It should_leverage_the_appropriate_type_converter = () =>
+				simple_integer_converter.received(x => x.convert_from("123"));
 
 			private static FakeInputModel result;
+			private static ISimpleTypeConverter simple_integer_converter;
 		}
 
 		public class FakeInputModel
 		{
 			public int id { get; set; }
 		}
+
 	}
 
 }
