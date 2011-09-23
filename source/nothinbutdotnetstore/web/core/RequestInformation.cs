@@ -22,9 +22,9 @@ namespace nothinbutdotnetstore.web.core
                 .map_from(payload);
         }
 
-        public bool was_made_for<InputModel>()
+        public bool can_map_a<InputModel>()
         {
-            return payload[UrlTokens.request_type].Equals(typeof(InputModel).Name, StringComparison.OrdinalIgnoreCase);
+            return payload[UrlTokens.request_type].Equals(typeof (InputModel).ToString(), StringComparison.OrdinalIgnoreCase);
         }
     }
 }

@@ -126,6 +126,7 @@
     <Compile Include="web\core\link_builder\TokenStore.cs" />
     <Compile Include="web\core\link_builder\UrlTokens.cs" />
     <Compile Include="web\core\MapperRegistry.cs" />
+    <Compile Include="web\core\OrchestrateAnApplicationFeature.cs" />
     <Compile Include="web\core\RequestFactory.cs" />
     <Compile Include="web\core\RequestInformation.cs" />
     <Compile Include="web\core\IFindMappers.cs" />

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace nothinbutdotnetstore.web.core.link_builder
 {

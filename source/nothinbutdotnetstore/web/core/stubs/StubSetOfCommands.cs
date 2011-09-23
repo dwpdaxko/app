@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
+using nothinbutdotnetstore.web.core.aspnet;
 
 namespace nothinbutdotnetstore.web.core.stubs
 {
@@ -14,9 +15,23 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         public IEnumerator<IProcessOneRequest> GetEnumerator()
         {
-            yield return new RequestCommand(x => x.was_made_for<ViewMainDepartmentsRequest>(), Depends.on.a<QueryFor<IEnumerable<Department>, StubGetTheMainDepartments>>());
-            yield return new RequestCommand(x => x.was_made_for<ViewTheDepartmentsOfADepartmentRequest>(), Depends.on.a<QueryFor<IEnumerable<Department>, StubGetTheDepartmentsInADepartment>>());
-            yield return new RequestCommand(x => x.was_made_for<ViewTheProductsInADepartmentRequest>(), Depends.on.a<QueryFor<IEnumerable<Product>, StubGetTheProductsInADepartment>>());
+            yield return
+                new RequestCommand(x => x.can_map_a<ViewMainDepartmentsRequest>(),
+                                   new QueryFor<IEnumerable<Department>, StubGetTheMainDepartments>(
+                                       new StubGetTheMainDepartments(), Depends.on.a<IDisplayReports>()));
+            yield return
+                new RequestCommand(x => x.can_map_a<ViewTheDepartmentsOfADepartmentRequest>(),
+                                   new QueryFor<IEnumerable<Department>, StubGetTheDepartmentsInADepartment>(
+                                       new StubGetTheDepartmentsInADepartment(), Depends.on.a<IDisplayReports>()));
+
+            yield return
+                new RequestCommand(x => x.can_map_a<ViewTheProductsInADepartmentRequest>(),
+                                   new QueryFor<IEnumerable<Product>, StubGetTheProductsInADepartment>(
+                                       new StubGetTheProductsInADepartment(), Depends.on.a<IDisplayReports>()));
+            
+            
+        
+       
         }
     }
 }

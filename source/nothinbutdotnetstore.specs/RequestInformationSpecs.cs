@@ -55,7 +55,7 @@ namespace nothinbutdotnetstore.specs
                 };
 
                 It should_return_true = () =>
-                    sut.was_made_for<FakeInputModel>().ShouldBeTrue();
+                    sut.can_map_a<FakeInputModel>().ShouldBeTrue();
 
                 static NameValueCollection collection;
                 static ICreateSimpleTokens token_factory;
@@ -71,7 +71,7 @@ namespace nothinbutdotnetstore.specs
                 };
 
                 It should_return_false = () =>
-                    sut.was_made_for<FakeInputModel>().ShouldBeFalse();
+                    sut.can_map_a<FakeInputModel>().ShouldBeFalse();
 
                 static NameValueCollection collection;
                 static ICreateSimpleTokens token_factory;
