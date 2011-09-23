@@ -31,6 +31,8 @@ namespace nothinbutdotnetstore.tasks
             factories.Add(new SimpleTypeKey((typeof(IFindCommands))), new SimpleDependencyFactory(() => Stub.with<StubCommandRegistry>()));
             factories.Add(new SimpleTypeKey(typeof(IProcessRequests)), new SimpleDependencyFactory(() => new FrontController(Depends.on.a<IFindCommands>())));
         }
+
+
     }
 
     internal class StubCommandRegistry : IFindCommands

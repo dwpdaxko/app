@@ -1,7 +1,8 @@
 ﻿using System.Collections.Specialized;
-using Machine.Specifications;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
+using Machine.Specifications;
+using nothinbutdotnetstore.web.application.catalogbrowsing;
 using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.specs
@@ -39,6 +40,39 @@ namespace nothinbutdotnetstore.specs
             static NameValueCollection request_data;
             static FakeInputModel model;
             static IFindMappers mapper_registry;
+        }
+
+        public class when_determining_whether_a_request_was_made_for_a_input_model : concern
+        {
+            public class and_there_is_a_request_type_token_that_matches_the_name_of_the_input_model
+            {
+                Establish c = () =>
+                {
+                    collection = new NameValueCollection() {{PayloadTokens.routing.request_type.key, "FakeInputModel"}};
+                    depends.on(collection);
+                };
+
+                It should_return_true = () =>
+                    sut.was_made_for<FakeInputModel>().ShouldBeTrue();
+
+                static string the_url;
+                static NameValueCollection collection;
+            }
+
+            public class and_there_is_not_a_request_type_token_that_matches_the_name_of_the_input_model
+            {
+                Establish c = () =>
+                {
+                    collection = new NameValueCollection() { { PayloadTokens.routing.request_type.key, "Blah" } };
+                    depends.on(collection);
+                };
+
+                It should_return_false = () =>
+                    sut.was_made_for<FakeInputModel>().ShouldBeFalse();
+
+                static string the_url;
+                static NameValueCollection collection;
+            }
         }
 
         public class FakeInputModel

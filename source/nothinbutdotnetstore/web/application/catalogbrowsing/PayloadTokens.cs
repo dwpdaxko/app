@@ -5,6 +5,11 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
     public class PayloadTokens
     {
+        public class routing
+        {
+            public static readonly SimpleToken<string> request_type = New.token<string>("request_type");
+        }
+
         public class view_departments_in_department_request
         {
             public static readonly SimpleToken<long> department_id = New.token<long>("department_id");
