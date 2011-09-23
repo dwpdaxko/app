@@ -8,6 +8,7 @@ using nothinbutdotnetstore.web.application.catalogbrowsing;
 using nothinbutdotnetstore.web.application.catalogbrowsing.stubs;
 using nothinbutdotnetstore.web.core;
 using nothinbutdotnetstore.web.core.aspnet;
+using nothinbutdotnetstore.web.core.link_builder;
 using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.tasks
@@ -37,7 +38,6 @@ namespace nothinbutdotnetstore.tasks
             register<IFindViewForModel>(() => new WebFormViewRegistry(BuildManager.CreateInstanceFromVirtualPath, Depends.on.a<IFindPathsToViews>()));
             register<IDisplayReports>(() => new WebFormDisplayEngine(Depends.on.a<IFindViewForModel>(), () => HttpContext.Current));
             register<ICreateRequests>(() => new RequestFactory(Depends.on.a<IFindMappers>()));
-
             register<IProcessRequests>(() => new FrontController(Depends.on.a<IFindCommands>()));
 
             register<IFindCommands>(() => new CommandRegistry(
