@@ -14,16 +14,15 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         public IEnumerator<IProcessOneRequest> GetEnumerator()
         {
-            yield return
-                new RequestCommand(x => true,
-                                   Depends.on.a<QueryFor<IEnumerable<Department>, StubGetTheMainDepartments>>());
-            yield return
-                new RequestCommand(x => true,
-                                   Depends.on.a<QueryFor<IEnumerable<Department>, StubGetTheDepartmentsInADepartment>>())
-                ;
-            yield return
-                new RequestCommand(x => true,
-                                   Depends.on.a<QueryFor<IEnumerable<Product>, StubGetTheProductsInADepartment>>());
+            yield return create_command<IEnumerable<Department>,StubGetTheMainDepartments>();
+            yield return create_command<IEnumerable<Department>,StubGetTheDepartmentsInADepartment>();
+            yield return create_command<IEnumerable<Product>,StubGetTheProductsInADepartment>();
+        }
+
+        IProcessOneRequest create_command<ReportModel,QueryObject>() where QueryObject : IFetchA<ReportModel>
+        {
+           return new RequestCommand(x => true,
+               Depends.on.a<QueryFor<ReportModel,QueryObject>>>()) 
         }
     }
 }
