@@ -35,21 +35,31 @@ namespace nothinbutdotnetstore.tasks
         static void populate_factories()
         {
             register<IFindPathsToViews>(() => Stub.with<StubViewPathRegistry>());
-            register<IFindViewForModel>(() => new WebFormViewRegistry(BuildManager.CreateInstanceFromVirtualPath, Depends.on.a<IFindPathsToViews>()));
-            register<IDisplayReports>(() => new WebFormDisplayEngine(Depends.on.a<IFindViewForModel>(), () => HttpContext.Current));
+            register<IFindViewForModel>(
+                () =>
+                    new WebFormViewRegistry(BuildManager.CreateInstanceFromVirtualPath,
+                                            Depends.on.a<IFindPathsToViews>()));
+            register<IDisplayReports>(
+                () => new WebFormDisplayEngine(Depends.on.a<IFindViewForModel>(), () => HttpContext.Current));
             register<ICreateRequests>(() => new RequestFactory(Depends.on.a<IFindMappers>()));
             register<IProcessRequests>(() => new FrontController(Depends.on.a<IFindCommands>()));
 
             register<IFindCommands>(() => new CommandRegistry(
-                Depends.on.a<IEnumerable<IProcessOneRequest>>(),
-                Depends.on.a<IProcessOneRequest>()));
+                                        Depends.on.a<IEnumerable<IProcessOneRequest>>(),
+                                        Depends.on.a<IProcessOneRequest>()));
 
+
+            register<IProcessAToken>(() => new LinkVisitor());
+            register<ICreateLinkBuilders>(() => new LinkBuilderFactory(Depends.on.a<IProcessAToken>()));
             register<IEnumerable<IProcessOneRequest>>(() => Stub.with<StubSetOfCommands>());
             register<IProcessOneRequest>(() => Stub.with<StubMissingCommand>());
 
-            register<IMapAnInputModelOf<ViewMainDepartmentsRequest>>(() => new StubInputModelMapper<ViewMainDepartmentsRequest>());
-            register<IMapAnInputModelOf<ViewTheDepartmentsOfADepartmentRequest>>(() => new StubInputModelMapper<ViewTheDepartmentsOfADepartmentRequest>());
-            register<IMapAnInputModelOf<ViewTheProductsInADepartmentRequest>>(() => new StubInputModelMapper<ViewTheProductsInADepartmentRequest>());
+            register<IMapAnInputModelOf<ViewMainDepartmentsRequest>>(
+                () => new StubInputModelMapper<ViewMainDepartmentsRequest>());
+            register<IMapAnInputModelOf<ViewTheDepartmentsOfADepartmentRequest>>(
+                () => new StubInputModelMapper<ViewTheDepartmentsOfADepartmentRequest>());
+            register<IMapAnInputModelOf<ViewTheProductsInADepartmentRequest>>(
+                () => new StubInputModelMapper<ViewTheProductsInADepartmentRequest>());
         }
 
         static void register<Contract>(Func<object> implementation)
@@ -57,8 +67,5 @@ namespace nothinbutdotnetstore.tasks
             factories.Add(new SimpleTypeKey(typeof(Contract)), new
                                                                    SimpleDependencyFactory(implementation));
         }
-
-
     }
-
 }
