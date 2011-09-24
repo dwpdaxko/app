@@ -121,6 +121,7 @@
     <Compile Include="DisplayEngineSpecs.cs" />
     <Compile Include="EnumerableExtensionsSpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
+    <Compile Include="GreediestConstructorPickerSpecs.cs" />
     <Compile Include="LinkBuilderSpecs.cs" />
     <Compile Include="LinkBuildFactorySpecs.cs" />
     <Compile Include="LinkSpecs.cs" />
