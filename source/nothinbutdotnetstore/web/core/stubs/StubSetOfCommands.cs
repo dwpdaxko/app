@@ -15,23 +15,16 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         public IEnumerator<IProcessOneRequest> GetEnumerator()
         {
-            yield return
-                new RequestCommand(x => x.can_map_a<ViewMainDepartmentsRequest>(),
-                                   new QueryFor<IEnumerable<Department>, StubGetTheMainDepartments>(
-                                       new StubGetTheMainDepartments(), Depends.on.a<IDisplayReports>()));
-            yield return
-                new RequestCommand(x => x.can_map_a<ViewTheDepartmentsOfADepartmentRequest>(),
-                                   new QueryFor<IEnumerable<Department>, StubGetTheDepartmentsInADepartment>(
-                                       new StubGetTheDepartmentsInADepartment(), Depends.on.a<IDisplayReports>()));
+            yield return create_to_run<IEnumerable<Department>, StubGetTheMainDepartments, ViewTheMainDepartmentsRequest>();
+            yield return create_to_run<IEnumerable<Department>, StubGetTheDepartmentsInADepartment, ViewTheDepartmentsOfADepartmentRequest>();
+            yield return create_to_run<IEnumerable<Product>, StubGetTheProductsInADepartment, ViewTheProductsInADepartmentRequest>();
 
-            yield return
-                new RequestCommand(x => x.can_map_a<ViewTheProductsInADepartmentRequest>(),
-                                   new QueryFor<IEnumerable<Product>, StubGetTheProductsInADepartment>(
-                                       new StubGetTheProductsInADepartment(), Depends.on.a<IDisplayReports>()));
-            
-            
-        
-       
+        }
+
+        IProcessOneRequest create_to_run<ReportModel, Query,RequestType>() where Query : IFetchA<ReportModel>
+        {
+            return new RequestCommand(x => x.can_map_a<RequestType>(),
+                                      Depends.on.a<QueryFor<ReportModel, Query>>()); 
         }
     }
 }
