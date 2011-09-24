@@ -1,4 +1,6 @@
-﻿ using Machine.Specifications;
+﻿ using System.Linq.Expressions;
+ using System.Reflection;
+ using Machine.Specifications;
  using developwithpassion.specifications.rhinomocks;
  using developwithpassion.specifications.extensions;
  using nothinbutdotnetstore.specs.utility;
@@ -28,10 +30,11 @@ namespace nothinbutdotnetstore.specs
                 ctor_selection_strategy = depends.on<IPickTheConstructorToCreateAType>();
                 depends.on(typeof(ATypeWithDependencies));
 
+                greediest_ctor = ObjectFactory.expressions.to_target<ATypeWithDependencies>()
+                    .get_ctor(() => new ATypeWithDependencies(null, null, null));
 
                 ctor_selection_strategy.setup(x => x.pick_applicable_ctor_on(typeof(ATypeWithDependencies)))
-                    .Return(ObjectFactory.expressions.to_target<ATypeWithDependencies>().
-                    get_ctor(() => new ATypeWithDependencies(null,null,null)));
+                    .Return(greediest_ctor);
 
                 container.setup(x => x.a(typeof(First))).Return(first);
                 container.setup(x => x.a(typeof(Second))).Return(second);
@@ -56,6 +59,7 @@ namespace nothinbutdotnetstore.specs
             static Third third;
             static IFetchDependencies container;
             static IPickTheConstructorToCreateAType ctor_selection_strategy;
+            static ConstructorInfo greediest_ctor;
         }
     }
 
