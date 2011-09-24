@@ -36,6 +36,7 @@ namespace nothinbutdotnetstore.tasks
         static void populate_factories()
         {
             register(container);
+
             register<ICreateLinkBuilders, LinkBuilderFactory>();
             register<GetTheCurrentlyExecutingContext>(() => HttpContext.Current);
             register<WebFormFactory>(BuildManager.CreateInstanceFromVirtualPath);
@@ -43,6 +44,14 @@ namespace nothinbutdotnetstore.tasks
             register<IFindPathsToViews, StubViewPathRegistry>();
             register<IFindViewForModel, WebFormViewRegistry>();
             register<IDisplayReports, WebFormDisplayEngine>();
+
+            register<StubGetTheDepartmentsInADepartment>();
+            register<StubGetTheMainDepartments>();
+            register<StubGetTheProductsInADepartment>();
+
+            register_query<StubGetTheMainDepartments, IEnumerable<Department>>();
+            register_query<StubGetTheDepartmentsInADepartment, IEnumerable<Department>>();
+            register_query<StubGetTheProductsInADepartment, IEnumerable<Product>>();
 
             register<ICreateRequests, RequestFactory>();
             register<IProcessRequests, FrontController>();
@@ -57,13 +66,6 @@ namespace nothinbutdotnetstore.tasks
             register<IMapAnInputModelOf<ViewTheProductsInADepartmentRequest>,
                     StubInputModelMapper<ViewTheProductsInADepartmentRequest>>();
 
-            register<StubGetTheDepartmentsInADepartment>();
-            register<StubGetTheMainDepartments>();
-            register<StubGetTheProductsInADepartment>();
-
-            register_query<StubGetTheMainDepartments, IEnumerable<Department>>();
-            register_query<StubGetTheDepartmentsInADepartment, IEnumerable<Department>>();
-            register_query<StubGetTheProductsInADepartment, IEnumerable<Product>>();
         }
 
         static void register_query<QueryObject, ReportModel>() where QueryObject : IFetchA<ReportModel>
@@ -79,7 +81,7 @@ namespace nothinbutdotnetstore.tasks
         static void register<Contract, Implementation>()
         {
             factories.Add(new SimpleTypeKey(typeof(Contract)),
-                          new AutomaticDependencyFactory(Depends.on.a<IFetchDependencies>(),
+                          new AutomaticDependencyFactory(container,
                                                          new GreediestConstructorPicker(),
                                                          typeof(Implementation)));
         }

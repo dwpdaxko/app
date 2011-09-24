@@ -7,7 +7,7 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing.stubs
     {
         public InputModel map_from(NameValueCollection item)
         {
-            return new InputModel();
+
         }
     }
 }

@@ -16,6 +16,7 @@ namespace nothinbutdotnetstore.web.core.stubs
         {
             yield return
                 create_to_run<IEnumerable<Department>, StubGetTheMainDepartments, ViewTheMainDepartmentsRequest>();
+
             yield return
                 create_to_run
                     <IEnumerable<Department>, StubGetTheDepartmentsInADepartment, ViewTheDepartmentsOfADepartmentRequest
@@ -27,8 +28,10 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         IProcessOneRequest create_to_run<ReportModel, Query, RequestType>() where Query : IFetchA<ReportModel>
         {
-            return new RequestCommand(x => x.can_map_a<RequestType>(),
-                                      Depends.on.a<QueryFor<ReportModel, Query>>());
+            return new RequestCommand(x => true,
+                                      new QueryFor<ReportModel, Query>(
+                                          Depends.on.a<Query>(),
+                                          Depends.on.a<IDisplayReports>()));
         }
     }
 }
