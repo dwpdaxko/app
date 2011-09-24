@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using nothinbutdotnetstore.utility.containers;
 using nothinbutdotnetstore.web.application.catalogbrowsing;
-using nothinbutdotnetstore.web.core.aspnet;
 
 namespace nothinbutdotnetstore.web.core.stubs
 {
@@ -15,16 +14,21 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         public IEnumerator<IProcessOneRequest> GetEnumerator()
         {
-            yield return create_to_run<IEnumerable<Department>, StubGetTheMainDepartments, ViewTheMainDepartmentsRequest>();
-            yield return create_to_run<IEnumerable<Department>, StubGetTheDepartmentsInADepartment, ViewTheDepartmentsOfADepartmentRequest>();
-            yield return create_to_run<IEnumerable<Product>, StubGetTheProductsInADepartment, ViewTheProductsInADepartmentRequest>();
-
+            yield return
+                create_to_run<IEnumerable<Department>, StubGetTheMainDepartments, ViewTheMainDepartmentsRequest>();
+            yield return
+                create_to_run
+                    <IEnumerable<Department>, StubGetTheDepartmentsInADepartment, ViewTheDepartmentsOfADepartmentRequest
+                        >();
+            yield return
+                create_to_run
+                    <IEnumerable<Product>, StubGetTheProductsInADepartment, ViewTheProductsInADepartmentRequest>();
         }
 
-        IProcessOneRequest create_to_run<ReportModel, Query,RequestType>() where Query : IFetchA<ReportModel>
+        IProcessOneRequest create_to_run<ReportModel, Query, RequestType>() where Query : IFetchA<ReportModel>
         {
             return new RequestCommand(x => x.can_map_a<RequestType>(),
-                                      Depends.on.a<QueryFor<ReportModel, Query>>()); 
+                                      Depends.on.a<QueryFor<ReportModel, Query>>());
         }
     }
 }

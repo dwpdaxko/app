@@ -22,10 +22,11 @@ namespace nothinbutdotnetstore.tasks
         {
             factories = new Dictionary<IRepresentAType, ICreateADependency>();
 
-            container = new Container(new DependencyFactoryRegistry(factories, type => new SimpleDependencyFactory(delegate
-            {
-                throw new NotImplementedException(string.Format("Failed to create an instance of {0}", type.Name));
-            })));
+            container =
+                new Container(new DependencyFactoryRegistry(factories, type => new SimpleDependencyFactory(delegate
+                {
+                    throw new NotImplementedException(string.Format("Failed to create an instance of {0}", type.Name));
+                })));
 
             Depends.container_resolver = () => container;
 
@@ -34,15 +35,14 @@ namespace nothinbutdotnetstore.tasks
 
         static void populate_factories()
         {
-
+            register(container);
             register<ICreateLinkBuilders, LinkBuilderFactory>();
-            register<IFetchDependencies>(() => container);
-            register<GetTheCurrentlyExecutingContext>(()=>HttpContext.Current);
+            register<GetTheCurrentlyExecutingContext>(() => HttpContext.Current);
+            register<WebFormFactory>(BuildManager.CreateInstanceFromVirtualPath);
             register<IFindMappers, MapperRegistry>();
             register<IFindPathsToViews, StubViewPathRegistry>();
             register<IFindViewForModel, WebFormViewRegistry>();
             register<IDisplayReports, WebFormDisplayEngine>();
-
 
             register<ICreateRequests, RequestFactory>();
             register<IProcessRequests, FrontController>();
@@ -50,14 +50,16 @@ namespace nothinbutdotnetstore.tasks
             register<IEnumerable<IProcessOneRequest>, StubSetOfCommands>();
             register<IProcessOneRequest, StubMissingCommand>();
             register<IProcessAToken, LinkVisitor>();
+
             register<IMapAnInputModelOf<ViewMainDepartmentsRequest>, StubInputModelMapper<ViewMainDepartmentsRequest>>();
-            register<IMapAnInputModelOf<ViewTheDepartmentsOfADepartmentRequest>, StubInputModelMapper<ViewTheDepartmentsOfADepartmentRequest>>();
-            register<IMapAnInputModelOf<ViewTheProductsInADepartmentRequest>, StubInputModelMapper<ViewTheProductsInADepartmentRequest>>();
+            register<IMapAnInputModelOf<ViewTheDepartmentsOfADepartmentRequest>,
+                    StubInputModelMapper<ViewTheDepartmentsOfADepartmentRequest>>();
+            register<IMapAnInputModelOf<ViewTheProductsInADepartmentRequest>,
+                    StubInputModelMapper<ViewTheProductsInADepartmentRequest>>();
 
             register<StubGetTheDepartmentsInADepartment>();
             register<StubGetTheMainDepartments>();
             register<StubGetTheProductsInADepartment>();
-
 
             register_query<StubGetTheMainDepartments, IEnumerable<Department>>();
             register_query<StubGetTheDepartmentsInADepartment, IEnumerable<Department>>();
@@ -66,27 +68,26 @@ namespace nothinbutdotnetstore.tasks
 
         static void register_query<QueryObject, ReportModel>() where QueryObject : IFetchA<ReportModel>
         {
-            register<QueryFor<ReportModel,QueryObject>>();
+            register<QueryFor<ReportModel, QueryObject>>();
         }
 
         static void register<Implementation>()
         {
-            register<Implementation,Implementation>();
+            register<Implementation, Implementation>();
         }
-        static void register<Contract,Implementation>()
+
+        static void register<Contract, Implementation>()
         {
             factories.Add(new SimpleTypeKey(typeof(Contract)),
                           new AutomaticDependencyFactory(Depends.on.a<IFetchDependencies>(),
                                                          new GreediestConstructorPicker(),
                                                          typeof(Implementation)));
-
         }
-        static void register<Contract>(Func<object> implementation)
+
+        static void register<Contract>(Contract implementation)
         {
             factories.Add(new SimpleTypeKey(typeof(Contract)), new
-                                                                   SimpleDependencyFactory(implementation));
+                                                                   SimpleDependencyFactory(() => implementation));
         }
-
-
     }
 }
