@@ -34,7 +34,7 @@ namespace nothinbutdotnetstore.tasks
 
         static void populate_factories()
         {
-            register<ICreateLinkBuilders>(()=>new LinkBuilderFactory(new TokenStore(), Depends.on.a<IProcessAToken>()));
+            register<ICreateLinkBuilders>(()=>new LinkBuilderFactory(Depends.on.a<IProcessAToken>()));
             register<IFetchDependencies>(()=> Depends.on);
             register<GetTheCurrentlyExecutingContext>(()=>HttpContext.Current);
             register<IFindMappers>(()=>new MapperRegistry(Depends.on.a<IFetchDependencies>()));

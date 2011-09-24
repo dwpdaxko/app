@@ -50,7 +50,7 @@ namespace nothinbutdotnetstore.specs
             {
                 Establish c = () =>
                 {
-                    collection = new NameValueCollection() {{UrlTokens.request_type, "FakeInputModel"}};
+                    collection = new NameValueCollection() {{UrlTokens.request_type, typeof(FakeInputModel).Name}};
                     depends.on(collection);
                 };
 

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace nothinbutdotnetstore.web.core
+﻿namespace nothinbutdotnetstore.web.core
 {
     public interface IContainRequestInformation
     {

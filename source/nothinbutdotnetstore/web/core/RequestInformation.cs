@@ -24,7 +24,7 @@ namespace nothinbutdotnetstore.web.core
 
         public bool can_map_a<InputModel>()
         {
-            return payload[UrlTokens.request_type].Equals(typeof (InputModel).ToString(), StringComparison.OrdinalIgnoreCase);
+            return payload[UrlTokens.request_type].Equals(typeof (InputModel).Name, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

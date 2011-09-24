@@ -1,24 +1,29 @@
 ﻿using System.Collections.Generic;
 using Machine.Specifications;
+using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using nothinbutdotnetstore.utility;
 using nothinbutdotnetstore.web.core.link_builder;
 
 namespace nothinbutdotnetstore.specs
 {
-    public class LinknVisitorSpecs
+    public class LinkVisitorSpecs
     {
         public class concern : Observes<IProcessAToken, LinkVisitor>
         {
         }
 
-        public class when_visiting_a_request_type_token : concern
+        public class SomeOtherType
+        {
+        }
+
+        public class when_visiting_the_first_token : concern
         {
             Establish context = () =>
             {
                 var tokens = new List<Token>
                 {
-                    new FakeToken {key = UrlTokens.request_type, value = "CommandTypeName"}
+                    new FakeToken {key = UrlTokens.request_type, value = typeof(SomeOtherType)}
                 };
 
                 sut_setup.run(x => tokens.visit_all_items_using(x.process));
@@ -30,7 +35,7 @@ namespace nothinbutdotnetstore.specs
             };
 
             It should_return_a_ = () =>
-                result.ShouldEqual("/run.daxko?" + UrlTokens.request_type + "=CommandTypeName");
+                result.ShouldEqual("/run.daxko?" + UrlTokens.request_type + "={0}".format_using(typeof(SomeOtherType).Name));
 
             static Token token;
             static string result;

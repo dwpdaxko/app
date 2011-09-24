@@ -96,7 +96,7 @@ namespace nothinbutdotnetstore.specs
         }
     }
 
-    class FakeType
+    public class FakeType
     {
     }
 }
