@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="MessageGenerator.cs" />
     <Compile Include="tasks\Startup.cs" />
+    <Compile Include="utility\containers\AutomaticDependencyFactory.cs" />
     <Compile Include="utility\containers\Container.cs" />
     <Compile Include="utility\containers\ContainerResolver.cs" />
     <Compile Include="utility\containers\CreateMissingDependencyFactory.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="utility\containers\ICreateADependency.cs" />
     <Compile Include="utility\containers\IFindDependencyFactories.cs" />
     <Compile Include="utility\containers\IFetchDependencies.cs" />
+    <Compile Include="utility\containers\IPickTheConstructorToCreateAType.cs" />
     <Compile Include="utility\containers\IRepresentAType.cs" />
     <Compile Include="utility\containers\SimpleTypeKey.cs" />
     <Compile Include="utility\containers\simple\SimpleDependencyFactory.cs" />

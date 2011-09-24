@@ -6,9 +6,9 @@ namespace nothinbutdotnetstore.utility.containers.simple
     {
     	private Func<object> factory_method;
 
-    	public SimpleDependencyFactory(Func<object> factoryMethod)
+    	public SimpleDependencyFactory(Func<object> factory_method)
     	{
-    		factory_method = factoryMethod;
+    		this.factory_method = factory_method;
     	}
 
     	public object create()
