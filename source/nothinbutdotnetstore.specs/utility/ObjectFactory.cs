@@ -13,7 +13,7 @@ namespace nothinbutdotnetstore.specs.utility
         {
             public static ExpressionUtility<Target> to_target<Target>()
             {
-                
+                return new ExpressionUtility<Target>();
             }
         }
 

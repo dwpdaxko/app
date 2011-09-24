@@ -41,7 +41,6 @@ namespace nothinbutdotnetstore.specs
             Because b = () =>
                 result = sut.create();
 
-
             It should_return_the_type_with_all_of_its_dependencies_satisfied = () =>
             {
                 var item = result.ShouldBeAn<ATypeWithDependencies>();
