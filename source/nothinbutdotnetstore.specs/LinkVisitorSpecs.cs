@@ -21,24 +21,21 @@ namespace nothinbutdotnetstore.specs
         {
             Establish context = () =>
             {
-                var tokens = new List<Token>
-                {
-                    new FakeToken {key = UrlTokens.request_type, value = typeof(SomeOtherType)}
-                };
-
-                sut_setup.run(x => tokens.visit_all_items_using(x.process));
+                first_token = new FakeToken {key = UrlTokens.request_type, value = typeof(SomeOtherType)};
             };
 
             Because b = () =>
             {
+                sut.process(first_token);
                 result = sut.get_result();
             };
 
-            It should_return_a_ = () =>
+            It should_return_a_correct_url_string = () =>
                 result.ShouldEqual("/run.daxko?" + UrlTokens.request_type + "={0}".format_using(typeof(SomeOtherType).Name));
 
             static Token token;
             static string result;
+            static FakeToken first_token;
         }
 
         public class when_visiting_a_set_of_tokens_with_parameters : concern
@@ -47,7 +44,7 @@ namespace nothinbutdotnetstore.specs
             {
                 var tokens = new List<Token>
                 {
-                    new FakeToken {key = UrlTokens.request_type, value = "CommandTypeName"},
+                    new FakeToken {key = UrlTokens.request_type, value = typeof(SomeOtherType)},
                     new FakeToken {key = "id", value = "foo"},
                     new FakeToken {key = "bar", value = "baz"}
                 };
@@ -62,7 +59,7 @@ namespace nothinbutdotnetstore.specs
 
             It should_return_a_ = () =>
             {
-                result.ShouldEqual("/run.daxko?" + UrlTokens.request_type + "=CommandTypeName&id=foo&bar=baz");
+                result.ShouldEqual("/run.daxko?" + UrlTokens.request_type + "={0}&id=foo&bar=baz".format_using(typeof(SomeOtherType).Name));
             };
 
             static Token token;
